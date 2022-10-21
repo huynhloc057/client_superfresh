@@ -1,0 +1,275 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  input {
+    @apply outline-none;
+  }
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+input:focus + .error-input {
+  display: none;
+}
+
+.event-slider {
+  .swiper-button-next {
+    color: rgb(255, 255, 255);
+    padding: 10px;
+  }
+
+  .swiper-button-next:hover {
+    background-color: rgba($color: #000000, $alpha: 0.4);
+  }
+
+  .swiper-button-prev {
+    color: rgb(255, 255, 255);
+    padding: 10px;
+  }
+
+  .swiper-button-prev:hover {
+    background-color: rgba($color: #000000, $alpha: 0.4);
+  }
+
+  .swiper-pagination{
+    display: none;
+  }
+}
+
+.category-topbar {
+  .swiper-slide {
+    max-width: max-content;
+  }
+}
+
+.slider_products {
+  .swiper-wrapper {
+  }
+}
+
+.swiper-wrapper {
+  height: 500px;
+}
+
+.swiper > .swiper-scrollbar {
+  display: none;
+}
+
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  font-size: 13px;
+  font-weight: 400;
+  // select-none
+  .selected {
+    @apply text-primary;
+  }
+}
+
+.header-account:hover #dropdown {
+  display: block;
+}
+
+#dropdown::before {
+  content: '';
+  border: 10px solid;
+  border-color: transparent transparent white transparent;
+  position: absolute;
+  right: 72px;
+  top: -17px;
+  display: block;
+}
+#dropdown::after {
+  content: '';
+  position: absolute;
+  width: 150px;
+  height: 20px;
+  top: -15px;
+  background-color: transparent;
+  display: block;
+  z-index: 0;
+  // z-index: 20;
+  // display: none;
+}
+
+// .header-account:hover  .header-account::before {
+//   display: block;
+// }
+
+//styles slick slider
+.slick-slider {
+  height: 100%;
+  padding-left: 32px;
+  padding-right: 32px;
+  padding-bottom: 32px;
+}
+.slick-track {
+  width: 2036px !important;
+  display: flex;
+  justify-content: space-between;
+}
+
+.slick-slide {
+  width: 207px !important;
+}
+.slick-active {
+  border: none !important;
+  outline: none !important;
+}
+
+.swiper-wrapper .swiper-slide img {
+  height: 100%;
+  width: 100%;
+}
+
+.slick-prev:before,
+.slick-next:before {
+  // padding:;
+  background-color: black;
+  overflow: hidden;
+  border-radius: 100%;
+  color: white;
+}
+.slick-prev {
+  left: 12px;
+  z-index: 99;
+}
+.slick-next {
+  right: 12px;
+  z-index: 99;
+}
+
+//comments
+
+.comments {
+  margin-top: 20px;
+}
+
+.comments-title {
+  font-size: 30px;
+  margin-bottom: 20px;
+}
+
+.comments-container {
+  margin-top: 40px;
+}
+
+.comment-form-title {
+  font-size: 22px;
+}
+
+.comment-form-textarea {
+  width: 100%;
+  height: 80px;
+  margin-bottom: 8px;
+  margin-top: 8px;
+  border: 1px solid rgb(107, 114, 12);
+}
+
+.comment-form-button {
+  font-size: 16px;
+  padding: 8px 16px;
+  background: rgb(59, 130, 246);
+  border-radius: 8px;
+  color: white;
+}
+
+.comment-form-button:hover:enabled {
+  cursor: pointer;
+  background: rgb(37, 99, 235);
+}
+
+.comment-form-button:disabled {
+  opacity: 0.7;
+  cursor: default;
+}
+
+.comment-form-cancel-button {
+  margin-left: 10px;
+}
+
+.comment {
+  display: flex;
+  margin-bottom: 28px;
+}
+
+.comment-image-container {
+  margin-right: 12px;
+}
+
+.comment-image-container img {
+  border-radius: 50px;
+}
+
+.comment-right-part {
+  width: 100%;
+}
+
+.comment-content {
+  display: flex;
+}
+
+.comment-author {
+  margin-right: 8px;
+  font-size: 20px;
+  color: rgb(59, 130, 246);
+}
+
+.comment-text {
+  font-size: 18px;
+}
+
+.comment-actions {
+  display: flex;
+  font-size: 12px;
+  color: rgb(51, 51, 51);
+  cursor: pointer;
+  margin-top: 8px;
+}
+
+.comment-action {
+  margin-right: 8px;
+}
+
+.comment-action:hover {
+  text-decoration: underline;
+}
+
+.replies {
+  margin-top: 20px;
+}
+
+.skeleton {
+  background-color: #eeeeee;
+  background-image: linear-gradient(
+    110deg,
+    #ececec 8%,
+    #f5f5f5 18%,
+    #ececec 33%
+  );
+  background-size: 200% 100%;
+  animation: 1.5s shine linear infinite;
+}
+
+@keyframes shine {
+  to {
+    background-position-x: -200%;
+  }
+}
+
+.slick-track {
+  justify-content: left;
+}
+
+.slick-track > div {
+  padding: 8px
+}
