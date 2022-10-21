@@ -4,6 +4,7 @@ export const baseURL = {
   user: "http://localhost:5000/api/auth",
   product: "http://localhost:5000/api/product",
   category: "http://localhost:5000/api/category",
+  order: "http://localhost:5000/api/order",
 };
 
 const axiosClient = axios.create({
@@ -16,7 +17,7 @@ axiosClient.interceptors.request.use(
   (req) => {
     if (localStorage.getItem("profile")) {
       req.headers.Authorization = `Bearer ${
-        JSON.parse(localStorage.getItem("profile")).token
+        JSON.parse(localStorage.getItem("profile")).accessToken
       }`;
     }
     return req;

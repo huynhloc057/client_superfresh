@@ -8,9 +8,10 @@ const ListItemsCategory = () => {
   const dispatch = useDispatch();
   const handleTabCategory = (category) => {
     dispatch(setCategoryTab(category));
+    dispatch(getCategories());
   };
 
-   return (
+  return (
     <div className="flex w-full bg-white my-8">
       <div className="px-[15px] mx-auto">
         <div className="pt-[10px] px-0 pb-[30px] text-center">
@@ -24,7 +25,10 @@ const ListItemsCategory = () => {
           <div className="relative overflow-hidden m-0 p-0">
             <div className="opacity-[1] m-0 relative top-0 left-0 right-0">
               {categories.map((category) => (
-                <div key={category._id} className="w-[154px] inline-block py-0 px-[15px] mt-0 mb-[10px] mx-0 text-center">
+                <div
+                  key={category._id}
+                  className="w-[154px] inline-block py-0 px-[15px] mt-0 mb-[10px] mx-0 text-center"
+                >
                   <div className="bg-[#e9ffe9] hover:bg-[#D2EBB2] relative pb-[100%] rounded-[100%] mt-0 mx-auto mb-[15px] text-center overflow-hidden box-border">
                     <NavLink
                       to={`/catalog/${category.slug}`}

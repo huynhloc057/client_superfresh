@@ -1,25 +1,25 @@
-import React, { useState } from 'react'
-import ProductCard from './ProductCard'
-import ProductCardLoading from './ProductCardLoading'
+import React, { useState } from "react";
+import ProductCard from "./ProductCard";
+import ProductCardLoading from "./ProductCardLoading";
 
-const productPerRow = 20
+const productPerRow = 20;
 const ProductList = ({ products, isLoading }) => {
-  const [next, setNext] = useState(productPerRow)
+  const [next, setNext] = useState(productPerRow);
   const handleLoadMoreProduct = () => {
-    setNext(next + productPerRow)
-  }
+    setNext(next + productPerRow);
+  };
 
   return (
-    <div className='flex w-full bg-white mb-12'>
-      <div className='flex flex-col w-full mx-24 border-t border-dashed border-[#dcdcdc] pt-8'>
-      <div className='pt-[10px] px-0 pb-[30px] text-center'>
-        <div className='m-0 p-0'>
-          <h2 className='text-[24px] leading-[1.3] m-0 font-bold uppercase'>
-            TẤT CẢ SẢN PHẨM
-          </h2>
+    <div className="flex w-full bg-white mb-12">
+      <div className="flex flex-col w-full mx-24 border-t border-dashed border-[#dcdcdc] pt-8">
+        <div className="pt-[10px] px-0 pb-[30px] text-center">
+          <div className="m-0 p-0">
+            <h2 className="text-[24px] leading-[1.3] m-0 font-bold uppercase">
+              TẤT CẢ SẢN PHẨM
+            </h2>
+          </div>
         </div>
-      </div>
-        <div className='grid w-full gap-1 bg-white md:grid-cols-4 xl:grid-cols-5 '>
+        <div className="grid w-full gap-1 bg-white md:grid-cols-4 xl:grid-cols-5 ">
           {products && !isLoading ? (
             products
               ?.slice(0, next)
@@ -50,9 +50,9 @@ const ProductList = ({ products, isLoading }) => {
           )}
         </div>
         {next < products?.length && (
-          <div className='flex flex-col items-center justify-center bg-white'>
+          <div className="flex flex-col items-center justify-center bg-white">
             <button
-              className='h-8 px-2 mt-5 mb-4 text-sm font-semibold leading-4 text-center border rounded outline-none hover:text-white hover:bg-[#008641] bg-white hover:border-[#008641] text-[#008641] w-60'
+              className="h-8 px-2 mt-5 mb-4 text-sm font-semibold leading-4 text-center border rounded outline-none hover:text-white hover:bg-[#008641] bg-white hover:border-[#008641] text-[#008641] w-60"
               onClick={handleLoadMoreProduct}
             >
               Xem thêm
@@ -61,7 +61,7 @@ const ProductList = ({ products, isLoading }) => {
         )}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default ProductList
+export default ProductList;

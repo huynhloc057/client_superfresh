@@ -2,12 +2,12 @@ import { axiosClient, baseURL } from "../axiosClient";
 
 export const paymentApi = {
   addOrder(order) {
-    const url = `${baseURL.product}/orders`;
+    const url = `${baseURL.order}/add`;
     return axiosClient.post(url, order);
   },
 
   getOrdersByUserId(userId) {
-    const url = `${baseURL.product}/orders?userId=${userId}`;
+    const url = `${baseURL.order}/orders?userId=${userId}`;
     return axiosClient.get(url);
   },
 

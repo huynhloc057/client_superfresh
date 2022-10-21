@@ -7,7 +7,6 @@ import SignUpPage from "./pages/SignUpPage";
 import Cart from "./pages/Cart";
 import CataLogPage from "./pages/CatalogPage";
 import ProductDetailPage from "./pages/ProductDetailPage";
-
 import PagePayment from "./pages/PagePayment";
 import PageShipping from "./pages/PageShipping";
 import PageShippingAddress from "./pages/PageShipping_Address";
@@ -16,9 +15,7 @@ import DiscountCode from "./pages/DiscountCode";
 import Profile from "./pages/Profile";
 import Editphone from "./pages/Editphone";
 import Editemail from "./pages/Editemail";
-import Editpasssword from "./pages/Editpasssword";
 import PrivateRoutes from "./components/HOC/PrivateRoute";
-import PrivateRoutesAdmin from "./components/HOC/PrivateRouteAdmin";
 import PaymentInfo from "./pages/PaymentInfo";
 import Address from "./pages/Address";
 import EditAddress from "./pages/EditAddress";
@@ -49,11 +46,6 @@ function App() {
             <Route
               path="/profile/edit-email"
               element={<Editemail></Editemail>}
-            ></Route>
-
-            <Route
-              path="/profile/edit-password"
-              element={<Editpasssword></Editpasssword>}
             ></Route>
 
             <Route
@@ -103,7 +95,6 @@ function App() {
             element={<DiscountCode activeButton={2}></DiscountCode>}
             x
           ></Route>
-
 
           <Route path="*" element={<PageNotFound></PageNotFound>}></Route>
         </Routes>

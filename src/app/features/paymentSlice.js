@@ -37,18 +37,6 @@ export const getOrders = createAsyncThunk(
   }
 );
 
-export const updateOrder = createAsyncThunk(
-  "order/orderPost",
-  async (data, { rejectWithValue }) => {
-    try {
-      const response = await paymentApi.updateOrder(data);
-      return response;
-    } catch (err) {
-      return rejectWithValue(err.response.data);
-    }
-  }
-);
-
 const paymentSlice = createSlice({
   name: "order",
   initialState: {
@@ -88,17 +76,6 @@ const paymentSlice = createSlice({
       state.itemsOrder = action.payload;
     },
     [getOrdersByUser.rejected]: (state, action) => {
-      state.loading = false;
-      state.isError = true;
-    },
-    [updateOrder.pending]: (state, action) => {
-      state.isLoading = true;
-    },
-    [updateOrder.fulfilled]: (state, action) => {
-      state.isLoading = false;
-      state.itemsOrder = action.payload;
-    },
-    [updateOrder.rejected]: (state, action) => {
       state.loading = false;
       state.isError = true;
     },
