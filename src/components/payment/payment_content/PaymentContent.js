@@ -6,7 +6,7 @@ import { Bill } from "./bill";
 import { useSelector } from "react-redux";
 
 function PaymentContent() {
-  const { paymentItems } = useSelector((state) => state.cart);
+  const { items } = useSelector((state) => state.cart);
   return (
     <div
       className={clsx(
@@ -18,7 +18,7 @@ function PaymentContent() {
         "flex"
       )}
     >
-      <div className="bg-white mr-5">
+      <div className="mr-5 bg-white">
         <div
           className={clsx("w-[54.25rem]", "bg-white", "p-4", "rounded", "mb-4")}
         >
@@ -33,11 +33,11 @@ function PaymentContent() {
           >
             Danh sách hàng đã chọn
           </div>
-          <PaymentProducts datas={paymentItems} />
+          <PaymentProducts datas={items} />
         </div>
         <ChoosePays />
       </div>
-      <div className="h-full sticky top-0 bg-white mr-5 w-full">
+      <div className="sticky top-0 w-full h-full mr-5 bg-white">
         <ShipTo />
         <Bill />
       </div>

@@ -9,7 +9,7 @@ const cartSlice = createSlice({
     modalOpen: false,
     checkedItems: [],
     currentTotal: 0,
-    paymentItems: [],
+    items: [],
     voucher: 0,
     indexChoose: -1,
     checkedPayment: 0,
@@ -87,7 +87,7 @@ const cartSlice = createSlice({
       state.setModalOpen = false;
       state.checkedItems = [];
       state.currentTotal = 0;
-      state.paymentItems = [];
+      state.items = [];
       state.voucher = 0;
       state.indexChoose = -1;
       state.checkedPayment = 0;
@@ -102,7 +102,7 @@ const cartSlice = createSlice({
       state.currentTotal = payload;
     },
     setPaymentItems: (state, { payload }) => {
-      state.paymentItems = payload;
+      state.items = payload;
     },
     setVoucher: (state, { payload }) => {
       state.voucher = payload;

@@ -15,13 +15,14 @@ import Swal from "sweetalert2";
 import { CURRENCY } from "../payment/payment_content/constraint";
 import "react-toastify/dist/ReactToastify.css";
 import { coupons } from "./dataCoupon";
+import clsx from "clsx";
 
 const RightCart = ({ total, count, modalOpen }) => {
   const [open, setOpen] = useState(false);
   const { currentTotal, quantity, cartItems, checkedItems } = useSelector(
     (state) => state.cart
   );
-  const { address } = useSelector((state) => state?.address);
+  const { deliveryInfo } = useSelector((state) => state.address);
   const dispatch = useDispatch();
 
   // Choose coupon
@@ -39,11 +40,26 @@ const RightCart = ({ total, count, modalOpen }) => {
     //   });
     setChooseCoupon(!chooseCoupon);
   };
+  const [address, setAddress] = useState(null);
+
+  const setDefaultDeliveryInfo = () => {
+    if (deliveryInfo.address) {
+      const defaultAddress = deliveryInfo.address.find(
+        (add) => add.isDefault === true
+      );
+      if (defaultAddress) {
+        setAddress(defaultAddress);
+      } else {
+        setAddress(deliveryInfo.address[0]);
+      }
+    }
+  };
 
   // Set discount
   useEffect(() => {
+    setDefaultDeliveryInfo();
     dispatch(setModalOpen(!modalOpen));
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
     let temp = 0;
@@ -67,14 +83,7 @@ const RightCart = ({ total, count, modalOpen }) => {
         text: "Bạn vẫn chưa chọn sản phẩm nào để mua",
         confirmButtonText: "OK, đã hiểu",
       });
-    } else if (
-      address.address === undefined ||
-      address.name === undefined ||
-      address.phoneNumber === undefined ||
-      address.selectedWard === undefined ||
-      address.selectedDistrict === undefined ||
-      address.selectedCity === undefined
-    ) {
+    } else if (deliveryInfo.address === undefined) {
       Swal.fire({
         icon: "warning",
         text: "Bạn vẫn chưa điền đủ thông tin giao hàng",
@@ -84,8 +93,6 @@ const RightCart = ({ total, count, modalOpen }) => {
       navigate("/payment");
     }
   };
-
-  console.log("address", address.name);
 
   // Choose voucher
   const { indexChoose } = useSelector((state) => state.cart);
@@ -112,24 +119,28 @@ const RightCart = ({ total, count, modalOpen }) => {
                   Thay đổi
                 </NavLink>
               </div>
-              {address.name === undefined && address.phoneNumber ? (
-                <div className="flex items-center text-[#38383d] mb-[2px] font-semibold"></div>
-              ) : (
-                <div className="flex items-center text-[#38383d] mb-[2px] font-semibold">
-                  <p className="m-0">{address.name}</p>
-                  <i className="block w-[1px] h-5 bg-[#ebebf0] my-0 mx-2"></i>
-                  <p className="m-0">{address.phoneNumber}</p>
-                </div>
-              )}
-              {address.address === undefined ||
-              address.selectedWard === undefined ||
-              address.selectedDistrict === undefined ||
-              address.selectedCity === undefined ? (
-                <div className="text-[#808089] font-normal"></div>
-              ) : (
-                <div className="text-[#808089] font-normal">
-                  {`${address.address}, ${address.selectedWard}, ${address.selectedDistrict}, ${address.selectedCity}`}
-                </div>
+              {address && (
+                <>
+                  <div className="flex items-center">
+                    <span className="text-sm font-semibold text-[#38383d]">
+                      {address.name}
+                    </span>
+                    <div
+                      className={clsx(
+                        "w-[0.063rem]",
+                        "h-5",
+                        "mx-2",
+                        "bg-[#ebebf0]"
+                      )}
+                    ></div>
+                    <span className="text-sm font-semibold text-[#38383d]">
+                      {address.phoneNumber}
+                    </span>
+                  </div>
+                  <div className="text-sm font-normal text-[#808089]">
+                    {address.address}
+                  </div>
+                </>
               )}
             </div>
           </div>

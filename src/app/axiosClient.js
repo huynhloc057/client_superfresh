@@ -5,6 +5,7 @@ export const baseURL = {
   product: "http://localhost:5000/api/product",
   category: "http://localhost:5000/api/category",
   order: "http://localhost:5000/api/order",
+  address: "http://localhost:5000/api/deliveryInfo",
 };
 
 const axiosClient = axios.create({
@@ -17,9 +18,10 @@ axiosClient.interceptors.request.use(
   (req) => {
     if (localStorage.getItem("profile")) {
       req.headers.Authorization = `Bearer ${
-        JSON.parse(localStorage.getItem("profile")).accessToken
+        JSON.parse(localStorage.getItem("profile")).token
       }`;
     }
+
     return req;
   },
   function error() {

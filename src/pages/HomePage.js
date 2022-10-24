@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { getDeliveryInfo } from "../app/features/addressSlice";
 import { setModalOpen } from "../app/features/cartSlice";
 import Banner from "../components/banner/Banner";
 import ListItemsCategory from "../components/banner/ListItemsCategory";
@@ -13,6 +14,7 @@ const HomePage = () => {
   const { modalOpen } = useSelector((state) => state.cart);
 
   useEffect(() => {
+    dispatch(getDeliveryInfo());
     dispatch(setModalOpen(!modalOpen));
   }, [dispatch, modalOpen]);
   return (

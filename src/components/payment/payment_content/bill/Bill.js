@@ -15,7 +15,7 @@ import Swal from "sweetalert2";
 import { toast } from "react-toastify";
 
 function Bill() {
-  const { paymentItems, voucher, checkedPayment, currentTotal } = useSelector(
+  const { items, voucher, checkedPayment, currentTotal } = useSelector(
     (state) => state.cart
   );
   const { address } = useSelector((state) => state.address);
@@ -24,10 +24,10 @@ function Bill() {
   const [toggleBillDetail, setToggleBillDetail] = useState(false);
   const TOTAL = useMemo(
     () =>
-      paymentItems.reduce((total, product) => {
+      items.reduce((total, product) => {
         return total + product.price * product.quantity;
       }, 0),
-    []
+    [items]
   );
 
   const Razorpay = useRazorpay();
@@ -45,7 +45,7 @@ function Bill() {
       // order_id: "order_9A33XWu170gUtm", //This is a sample Order ID. Pass the `id` obtained in the response of createOrder().
       handler: function (response) {
         const data = {
-          paymentItems,
+          items,
           sumPrice,
           address,
           userId: userInfo.user._id,
@@ -102,7 +102,7 @@ function Bill() {
         if (checkedPayment === 0) {
           const sumPrice = currentTotal + Number(voucher) + Number(40000);
           const data = {
-            paymentItems,
+            items,
             sumPrice,
             address,
             userId: userInfo.user._id,
@@ -122,7 +122,17 @@ function Bill() {
     });
   };
   return (
-    <div className={clsx("bg-white", "p-4", "rounded", "mb-4", "border", "border-dashed", "border-[#dcdcdc]")}>
+    <div
+      className={clsx(
+        "bg-white",
+        "p-4",
+        "rounded",
+        "mb-4",
+        "border",
+        "border-dashed",
+        "border-[#dcdcdc]"
+      )}
+    >
       {/* start: info person */}
       <div className={clsx("flex", "justify-between")}>
         <span
@@ -146,7 +156,7 @@ function Bill() {
         <span
           className={clsx("text-sm", "font-semibold", "text-[#808089]", "mr-1")}
         >
-          {paymentItems.length} Sản phẩm.
+          {items.length} Sản phẩm.
         </span>
         <button
           className={clsx(
@@ -188,7 +198,7 @@ function Bill() {
       {/* start: bill detail */}
       {toggleBillDetail && (
         <WrapperBill>
-          {paymentItems.map((item, index) => (
+          {items.map((item, index) => (
             <BillDetail key={index} data={item} />
           ))}
         </WrapperBill>

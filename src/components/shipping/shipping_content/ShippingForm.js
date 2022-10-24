@@ -4,7 +4,10 @@ import ContentHeader from "../shipping_components/ContentHeader";
 import { useDispatch, useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
 import { Button } from "../../button";
-import { setAddress } from "../../../app/features/addressSlice";
+import {
+  addDeliveryInfo,
+  setAddress,
+} from "../../../app/features/addressSlice";
 import { useNavigate } from "react-router";
 import useLocationForm from "./useLocationForm";
 import InputShipping from "./InputShipping";
@@ -20,15 +23,6 @@ function ShippingForm() {
 
     reset,
   } = useForm();
-
-  const handleSubmitAddress = (dataAddress) => {
-    const temp = onSubmit(dataAddress);
-    console.log(temp);
-    dispatch(setAddress({ ...dataAddress, ...temp }));
-    reset();
-    navigate("/cart");
-  };
-
   const { state, onCitySelect, onDistrictSelect, onWardSelect, onSubmit } =
     useLocationForm(true);
 
@@ -40,8 +34,30 @@ function ShippingForm() {
     selectedDistrict,
     selectedWard,
   } = state;
+  const { address: addressDeiliver } = useSelector((state) => state.address);
 
-  const { address } = useSelector((state) => state.address);
+  const handleSubmitAddress = (dataAddress) => {
+    const temp = onSubmit(dataAddress);
+    console.log("temp", temp);
+    const { selectedCity, selectedDistrict, selectedWard } = temp;
+    const { name, phoneNumber } = dataAddress;
+    console.log(dataAddress);
+    const address =
+      dataAddress.address +
+      " " +
+      selectedWard +
+      " " +
+      selectedDistrict +
+      " " +
+      selectedCity;
+    console.log("address", address);
+    dispatch(
+      addDeliveryInfo({ ...addressDeiliver, name, phoneNumber, address })
+    );
+    reset();
+    navigate("/cart");
+  };
+
   return (
     <div className={clsx("max-w-[79rem]", "m-auto", "mt-6", "mb-6")}>
       <ContentHeader />
@@ -59,7 +75,7 @@ function ShippingForm() {
                   name="name"
                   placeholder="Jhon Doe"
                   autoComplete="off"
-                  defaultValue={address.name}
+                  defaultValue={addressDeiliver.name}
                   error={errors.name?.message}
                   required
                 ></InputShipping>
