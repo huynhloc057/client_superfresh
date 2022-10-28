@@ -1,18 +1,16 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { NavLink, useParams } from "react-router-dom";
-import { getProductDetail } from "../../app/features/productSlice";
+import React from "react";
+import { useSelector } from "react-redux";
+import { NavLink } from "react-router-dom";
 import Skeleton from "react-loading-skeleton";
 import { IconRight } from "../../components/icons";
 
 const ProductDetailTopBar = () => {
-  const dispatch = useDispatch();
-  const { slug } = useParams();
-  const { productDetail } = useSelector((state) => state.product);
-  useEffect(() => {
-    dispatch(getProductDetail(slug));
-  }, [slug, dispatch]);
-  const { isLoading } = useSelector((state) => state.product);
+  const { productDetail, isLoading } = useSelector((state) => state.product);
+
+  if (Object.keys(productDetail).length === 0) {
+    return null;
+  }
+
   return (
     <div className="flex items-center text-sm mx-[89px] text-textProduct border-b border-dashed border-[#dcdcdc]">
       <NavLink

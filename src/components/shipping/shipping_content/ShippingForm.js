@@ -4,10 +4,7 @@ import ContentHeader from "../shipping_components/ContentHeader";
 import { useDispatch, useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
 import { Button } from "../../button";
-import {
-  addDeliveryInfo,
-  setAddress,
-} from "../../../app/features/addressSlice";
+import { addDeliveryInfo } from "../../../app/features/addressSlice";
 import { useNavigate } from "react-router";
 import useLocationForm from "./useLocationForm";
 import InputShipping from "./InputShipping";
@@ -20,7 +17,6 @@ function ShippingForm() {
     handleSubmit,
     control,
     formState: { errors },
-
     reset,
   } = useForm();
   const { state, onCitySelect, onDistrictSelect, onWardSelect, onSubmit } =
@@ -34,14 +30,11 @@ function ShippingForm() {
     selectedDistrict,
     selectedWard,
   } = state;
-  const { address: addressDeiliver } = useSelector((state) => state.address);
 
   const handleSubmitAddress = (dataAddress) => {
     const temp = onSubmit(dataAddress);
-    console.log("temp", temp);
     const { selectedCity, selectedDistrict, selectedWard } = temp;
     const { name, phoneNumber } = dataAddress;
-    console.log(dataAddress);
     const address =
       dataAddress.address +
       " " +
@@ -50,10 +43,7 @@ function ShippingForm() {
       selectedDistrict +
       " " +
       selectedCity;
-    console.log("address", address);
-    dispatch(
-      addDeliveryInfo({ ...addressDeiliver, name, phoneNumber, address })
-    );
+    dispatch(addDeliveryInfo({ name, phoneNumber, address }));
     reset();
     navigate("/cart");
   };
@@ -75,7 +65,6 @@ function ShippingForm() {
                   name="name"
                   placeholder="Jhon Doe"
                   autoComplete="off"
-                  defaultValue={addressDeiliver.name}
                   error={errors.name?.message}
                   required
                 ></InputShipping>

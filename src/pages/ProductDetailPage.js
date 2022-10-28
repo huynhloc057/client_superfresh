@@ -6,12 +6,17 @@ import ProductDetailDescription from "../components/productdetail/ProductDetailD
 import ProductDetailShortDescription from "../components/productdetail/ProductDetailShortDescription";
 import Header from "../modules/header/Header";
 import Comments from "../modules/comment/Comments";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router";
+import { getProductDetail } from "../app/features/productSlice";
 
 export default function ProductDetailPage() {
+  const dispatch = useDispatch();
+  const { slug } = useParams();
   useEffect(() => {
+    dispatch(getProductDetail(slug));
     window.scrollTo(0, 0);
-  }, []);
+  }, [slug, dispatch]);
 
   const { userInfo } = useSelector((state) => state.auth);
   return (

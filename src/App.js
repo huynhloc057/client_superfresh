@@ -59,7 +59,7 @@ function App() {
             ></Route>
 
             <Route
-              path="/edit-address"
+              path="/edit-address/:_id"
               element={<EditAddress></EditAddress>}
             ></Route>
             <Route

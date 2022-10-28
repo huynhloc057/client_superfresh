@@ -1,14 +1,11 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
-import { getProductDetail } from "../../app/features/productSlice";
+import React from "react";
+import { useSelector } from "react-redux";
 export default function ProductDetailDescription() {
-  const dispatch = useDispatch();
-  const { slug } = useParams();
   const { productDetail } = useSelector((state) => state.product);
-  useEffect(() => {
-    dispatch(getProductDetail(slug));
-  }, [slug, dispatch]);
+  if (Object.keys(productDetail).length === 0) {
+    return null;
+  }
+
   return (
     <div className="flex w-full bg-white">
       <div className="flex flex-col w-full p-4 mt-5 overflow-hidden bg-white select-none mx-[73px]  border-b border-dashed border-[#dcdcdc]">

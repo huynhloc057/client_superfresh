@@ -16,6 +16,7 @@ import { CURRENCY } from "../payment/payment_content/constraint";
 import "react-toastify/dist/ReactToastify.css";
 import { coupons } from "./dataCoupon";
 import clsx from "clsx";
+import { getDeliveryInfo } from "../../app/features/addressSlice";
 
 const RightCart = ({ total, count, modalOpen }) => {
   const [open, setOpen] = useState(false);
@@ -57,6 +58,7 @@ const RightCart = ({ total, count, modalOpen }) => {
 
   // Set discount
   useEffect(() => {
+    dispatch(getDeliveryInfo());
     setDefaultDeliveryInfo();
     dispatch(setModalOpen(!modalOpen));
   }, [dispatch]);

@@ -9,8 +9,12 @@ export const addressApi = {
     const url = `${baseURL.address}/get`;
     return axiosClient.get(url);
   },
-  setDefaultDeliveryInfo: (payload) => {
+  deleteAddress(addressId) {
+    const url = `${baseURL.address}/delete`;
+    return axiosClient.post(url, addressId);
+  },
+  setDefaultDeliveryInfo: (addressId) => {
     const url = `${baseURL.address}/setDefaultDeliveryInfo`;
-    return axiosClient.post(url, payload);
+    return axiosClient.post(url, addressId);
   },
 };

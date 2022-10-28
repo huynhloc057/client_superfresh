@@ -13,6 +13,18 @@ export const addDeliveryInfo = createAsyncThunk(
   }
 );
 
+export const deleteDeliveryInfo = createAsyncThunk(
+  "address/delete",
+  async (addressId, { rejectWithValue }) => {
+    try {
+      const response = await addressApi.deleteAddress({ addressId });
+      return response;
+    } catch (err) {
+      return rejectWithValue(err.response.data);
+    }
+  }
+);
+
 export const getDeliveryInfo = createAsyncThunk(
   "address/get",
   async (rejectWithValue) => {
@@ -27,23 +39,34 @@ export const getDeliveryInfo = createAsyncThunk(
 
 export const setDefaultDeliveryInfo = createAsyncThunk(
   "address/setDefaultDeliveryInfo",
-  async (payload, thunkAPI) => {
-    const response = await addressApi.setDefaultDeliveryInfo(payload);
-    await thunkAPI.dispatch(getDeliveryInfo());
-    return response;
+  async (addressId, rejectWithValue) => {
+    try {
+      const response = await addressApi.setDefaultDeliveryInfo({ addressId });
+      return response;
+    } catch (err) {
+      return rejectWithValue(err.response.data);
+    }
   }
 );
+
 const addressSlice = createSlice({
   name: "address",
   initialState: {
     deliveryInfo: {},
     isLoading: false,
     errorMessage: "",
+    success: false,
+    successDelete: false,
   },
   reducers: {
     setAddress: (state, action) => {
-      console.log(action.payload);
       state.address = action.payload;
+    },
+    resetSuccessAddress: (state, action) => {
+      state.success = false;
+      state.isLoading = false;
+      state.errorMessage = "";
+      state.successDelete = false;
     },
   },
   extraReducers: {
@@ -52,8 +75,20 @@ const addressSlice = createSlice({
     },
     [addDeliveryInfo.fulfilled]: (state, action) => {
       state.isLoading = false;
+      state.success = true;
     },
     [addDeliveryInfo.rejected]: (state, action) => {
+      state.isLoading = false;
+      state.errorMessage = action.payload;
+    },
+    [deleteDeliveryInfo.pending]: (state, action) => {
+      state.isLoading = true;
+    },
+    [deleteDeliveryInfo.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      state.successDelete = true;
+    },
+    [deleteDeliveryInfo.rejected]: (state, action) => {
       state.isLoading = false;
       state.errorMessage = action.payload;
     },
@@ -77,9 +112,10 @@ const addressSlice = createSlice({
     },
     [setDefaultDeliveryInfo.fulfilled]: (state) => {
       state.isLoading = false;
+      state.success = true;
     },
   },
 });
 
-export const { setAddress } = addressSlice.actions;
+export const { setAddress, resetSuccessAddress } = addressSlice.actions;
 export default addressSlice.reducer;

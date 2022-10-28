@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink, useParams, useNavigate } from "react-router-dom";
-import { getProductDetail } from "../../app/features/productSlice";
+import { useNavigate } from "react-router-dom";
 import { IconStar } from "../icons";
 import { addToCart } from "../../app/features/cartSlice";
 
@@ -22,14 +21,9 @@ export default function ProductDetailContent() {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { slug } = useParams();
-  const { productDetail } = useSelector((state) => state.product);
   const { userInfo } = useSelector((state) => state.auth);
 
-  useEffect(() => {
-    dispatch(getProductDetail(slug));
-  }, [slug, dispatch]);
-
+  const { productDetail } = useSelector((state) => state.product);
   const handleAddToCart = () => {
     console.log(userInfo);
     if (!userInfo?.user?.name) {
@@ -38,7 +32,9 @@ export default function ProductDetailContent() {
   };
 
   var nf = new Intl.NumberFormat();
-
+  if (Object.keys(productDetail).length === 0) {
+    return null;
+  }
   return (
     <div className="flex w-full bg-white">
       <div className="flex flex-col w-full px-4 overflow-hidden bg-white select-none mx-[73px] border-b border-dashed border-[#dcdcdc]">
@@ -50,8 +46,8 @@ export default function ProductDetailContent() {
               <div className="relative text-center">
                 <img
                   id="Big picture"
-                  src={productDetail.productPictures[0]?.img}
-                  alt={productDetail.name}
+                  src={productDetail?.productPictures[0]?.img}
+                  alt={productDetail?.name}
                   className="h-full w-full object-cover"
                 />
               </div>
