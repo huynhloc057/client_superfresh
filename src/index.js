@@ -7,6 +7,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { store, persistor } from "./app/store";
 import { PersistGate } from "redux-persist/integration/react";
+
 // import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 
 const container = document.getElementById("root");

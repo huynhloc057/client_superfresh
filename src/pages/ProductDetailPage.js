@@ -27,10 +27,8 @@ export default function ProductDetailPage() {
       <ProductDetailDescription></ProductDetailDescription>
       <ProductDetailShortDescription></ProductDetailShortDescription>
 
-      <Comments
-        currentUserId={userInfo?.user._id}
-        currentAvartar={userInfo?.user?.profilePicture}
-      />
+      <Comments />
+
       <Footer></Footer>
     </div>
   );
