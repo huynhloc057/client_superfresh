@@ -12,7 +12,7 @@ import {
 } from "../../app/features/cartSlice";
 
 const ItemCart = (props) => {
-  const { quantity, _id } = props;
+  const { quantityChoose, _id, slug } = props;
   const dispatch = useDispatch();
   const showAlert1 = () => {
     Swal.fire({
@@ -38,7 +38,7 @@ const ItemCart = (props) => {
   const showAlert2 = () => {
     Swal.fire({
       icon: "error",
-      text: `Số lượng còn lại của sản phẩm này là: ${quantity}`,
+      text: `Số lượng còn lại của sản phẩm này là: ${quantityChoose}`,
     });
   };
 
@@ -63,7 +63,7 @@ const ItemCart = (props) => {
     //   }
     // }
   };
-
+  const { products } = useSelector((state) => state.product);
   return (
     <div>
       <div className="mb-10 item-product">
@@ -90,7 +90,7 @@ const ItemCart = (props) => {
 
               {/* Start Product Image */}
               <NavLink
-                to={`/product/${_id}`}
+                to={`/product/${slug}`}
                 className="product-image inline-block text-[#0b74e5] no-underline bg-transparent"
               >
                 <img
@@ -186,7 +186,7 @@ const ItemCart = (props) => {
                   className="qty-decrease inline-block border-r border-solid border-[#c8c8c8] text-[#999999] cursor-pointer w-6 h-6"
                   type="button"
                   onClick={
-                    props.quantity === 1
+                    props.quantityChoose === 1
                       ? showAlert1
                       : () => dispatch(subtractItemQuantity(props))
                   }
@@ -199,17 +199,16 @@ const ItemCart = (props) => {
                 <input
                   type="text"
                   className="qty-input border-none bg-transparent w-8 text-center text-[13px] appearance-none m-0 outline-none overflow-visible leading-[1.15] py-[1px] px-[2px] list-none"
-                  value={quantity}
+                  value={quantityChoose}
                   onChange={handleChange}
                 />
                 <button
                   className="qty-increase inline-block border-l border-solid border-[#c8c8c8] text-[#999999] cursor-pointer w-6 h-6"
                   type="button"
                   onClick={
-                    // props.quantity === products[props.index].quantity
-                    //   ? showAlert2
-                    //   :
-                    () => dispatch(addItemQuantity(props))
+                    props.quantityChoose === props.quantity
+                      ? showAlert2
+                      : () => dispatch(addItemQuantity(props))
                     // () => console.log(props)
                     // () => console.log(products)
                   }
@@ -227,7 +226,9 @@ const ItemCart = (props) => {
           {/* Start Col 4 - Thanh tien*/}
           <div className="w-[120px] py-0 px-[15px] list-none">
             <span className="product-finalprices text-[#ff424e] text-[13px] font-medium leading-5 block list-none box-border">
-              {`${(props.price * props.quantity)?.toLocaleString(CURRENCY)} ₫`}
+              {`${(props.price * props.quantityChoose)?.toLocaleString(
+                CURRENCY
+              )} ₫`}
             </span>
           </div>
           {/* End Col 4*/}

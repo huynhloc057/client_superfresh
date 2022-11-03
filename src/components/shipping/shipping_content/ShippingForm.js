@@ -148,7 +148,7 @@ function ShippingForm() {
             </div>
           </div>
           <div className="flex justify-center pt-6 flex-col-2 pl-[180px]">
-            <Button type="submit" className=" bg-sky-500">
+            <Button type="submit" className=" bg-[#008641]">
               Giao đến địa chỉ này
             </Button>
           </div>

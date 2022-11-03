@@ -5,7 +5,6 @@ export default function ProductDetailDescription() {
   if (Object.keys(productDetail).length === 0) {
     return null;
   }
-
   return (
     <div className="flex w-full bg-white">
       <div className="flex flex-col w-full p-4 mt-5 overflow-hidden bg-white select-none mx-[73px]  border-b border-dashed border-[#dcdcdc]">

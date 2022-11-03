@@ -67,7 +67,7 @@ const RightCart = ({ total, count, modalOpen }) => {
     let temp = 0;
     for (let i = 0; i < cartItems.length; i++) {
       if (checkedItems[i] === true) {
-        temp += cartItems[i]?.price * cartItems[i]?.quantity;
+        temp += cartItems[i]?.price * cartItems[i]?.quantityChoose;
       }
     }
     dispatch(setCurrentTotal(temp));

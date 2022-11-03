@@ -92,6 +92,17 @@ const addressSlice = createSlice({
       state.isLoading = false;
       state.errorMessage = action.payload;
     },
+    [deleteDeliveryInfo.pending]: (state, action) => {
+      state.isLoading = true;
+    },
+    [deleteDeliveryInfo.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      state.successDelete = true;
+    },
+    [deleteDeliveryInfo.rejected]: (state, action) => {
+      state.isLoading = false;
+      state.errorMessage = action.payload;
+    },
     [getDeliveryInfo.pending]: (state, action) => {
       state.isLoading = true;
     },

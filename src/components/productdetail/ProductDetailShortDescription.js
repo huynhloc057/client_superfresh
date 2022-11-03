@@ -1,17 +1,9 @@
-import React, { useEffect } from "react";
-import { useParams } from "react-router";
-import { getProductDetail } from "../../app/features/productSlice";
-import { useDispatch, useSelector } from "react-redux";
+import React from "react";
+import { useSelector } from "react-redux";
 import ProductListRelated from "./ProductListRelated";
 
 export default function ProductDetailShortDescription() {
-  // const dispatch = useDispatch();
-  // const { slug } = useParams();
   const { productDetail } = useSelector((state) => state.product);
-  // useEffect(() => {
-  //   dispatch(getProductDetail(slug));
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, []);
   return (
     <div className="flex w-full bg-white">
       <div className="flex flex-col w-full mt-5 mb-4 overflow-hidden bg-white mx-[73px]  border-b border-dashed border-[#dcdcdc]">

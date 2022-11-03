@@ -46,6 +46,7 @@ input:focus + .error-input {
 .category-topbar {
   .swiper-slide {
     max-width: max-content;
+    width: auto !important;
   }
 }
 
@@ -129,6 +130,10 @@ input:focus + .error-input {
 .swiper-wrapper .swiper-slide img {
   height: 100%;
   width: 100%;
+}
+
+.category-topbar .swiper-wrapper {
+  justify-content: center;
 }
 
 .slick-prev:before,
