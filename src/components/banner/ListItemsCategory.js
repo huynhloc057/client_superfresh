@@ -29,7 +29,7 @@ const ListItemsCategory = () => {
                   key={category._id}
                   className="w-[154px] inline-block py-0 px-[15px] mt-0 mb-[10px] mx-0 text-center"
                 >
-                  <div className="bg-[#e9ffe9] hover:bg-[#D2EBB2] relative pb-[100%] rounded-[100%] mt-0 mx-auto mb-[15px] text-center overflow-hidden box-border">
+                  <div className=" hover:bg-[#D2EBB2] relative pb-[100%] rounded-full mt-0 mx-auto mb-[15px] text-center overflow-hidden box-border">
                     <NavLink
                       to={`/catalog/${category.slug}`}
                       className="whitespace-nowrap text-[#00381a]"
@@ -37,8 +37,8 @@ const ListItemsCategory = () => {
                       onClick={() => handleTabCategory(category)}
                     >
                       <img
-                        className="p-5 absolute top-0 left-0 right-0 my-0 mx-auto h-full max-w-full"
-                        src={category.categoryImage}
+                        className="p-5 absolute top-0 left-0 right-0 my-0 mx-auto h-full w-full object-cover rounded-full"
+                        src={category.categoryImage[0].img}
                         alt={category.name}
                       />
                     </NavLink>

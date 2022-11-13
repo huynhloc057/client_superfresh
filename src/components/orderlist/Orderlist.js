@@ -8,10 +8,9 @@ export default function OrderList() {
   const dispatch = useDispatch();
   const { userInfo } = useSelector((state) => state.auth);
   const { itemsOrder } = useSelector((state) => state.order);
-  const userId = userInfo?.user?._id;
   useEffect(() => {
-    dispatch(getOrdersByUser(userId));
-  }, [userId]);
+    dispatch(getOrdersByUser());
+  }, [userInfo, dispatch]);
 
   return (
     <div className="h-auto overflow-auto flex flex-col min-h-[calc(100vh-110px)] mb-6">
@@ -26,7 +25,7 @@ export default function OrderList() {
                   alt=""
                 />
                 <span>Giao hàng thành công</span>
-                <div className="float-right italic opacity-[0.4] font-normal text-black">
+                {/* <div className="float-right italic opacity-[0.4] font-normal text-black">
                   {Intl.DateTimeFormat("vn-VN", {
                     day: "2-digit",
                     month: "2-digit",
@@ -34,13 +33,13 @@ export default function OrderList() {
                     hour: "2-digit",
                     minute: "2-digit",
                   }).format(item.createdAt)}
-                </div>
+                </div> */}
               </div>
 
               <div className="cursor-pointer">
                 <div>
                   {/* item */}
-                  {item.paymentItems?.map((order) => (
+                  {item.items?.map((order) => (
                     <OrderItem order={order}></OrderItem>
                   ))}
                 </div>
@@ -51,7 +50,7 @@ export default function OrderList() {
                     Tổng tiền:
                   </div>
                   <div className="font-normal text-[#38383d] box-border">
-                    {`${item.sumPrice.toLocaleString(CURRENCY)} ₫`}
+                    {`${item.totalAmount.toLocaleString(CURRENCY)} ₫`}
                   </div>
                 </div>
                 <div className="box-border flex justify-between">

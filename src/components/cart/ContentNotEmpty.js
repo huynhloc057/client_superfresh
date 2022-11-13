@@ -66,6 +66,7 @@ const ContentNotEmpty = () => {
     checkedState.every((item) => item === true)
       ? setCheckedAll(true)
       : setCheckedAll(false);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [total]);
 
   useEffect(() => {
@@ -77,6 +78,7 @@ const ContentNotEmpty = () => {
     }
     // console.log(arrTemp);
     dispatch(setPaymentItems(temp));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [checkedState, quantity]);
   // Show Alert
   const showAlert = () => {

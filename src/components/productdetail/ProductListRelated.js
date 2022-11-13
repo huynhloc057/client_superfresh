@@ -8,7 +8,7 @@ import Slider from "react-slick";
 import ProductCardRelated from "../product/ProductCardRelated";
 
 const ProductListRelated = ({ productDetail }) => {
-  const categoryId = productDetail?.category._id;
+  const categoryId = productDetail?.category?._id;
   const productId = productDetail?._id;
   const { products } = useSelector((state) => state.product);
   const dispatch = useDispatch();

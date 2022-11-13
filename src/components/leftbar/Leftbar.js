@@ -4,7 +4,6 @@ import IconUserProfile from "../icons/IconUserProfile";
 import IconCupon from "../icons/IconCupon";
 import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
-import IconPaymentInfo from "../icons/IconPaymentInfo";
 import IconLocation from "../icons/IconLocation";
 
 export default function Leftbar({ activeButton }) {
@@ -58,17 +57,7 @@ export default function Leftbar({ activeButton }) {
             <div className="ml-3">Mã giảm giá </div>
           </li>
         </NavLink>
-        <NavLink to="/payment-info">
-          <li
-            className={
-              "flex py-1 hover:bg-slate-200" +
-              (activeButton === 3 ? " bg-slate-200" : "")
-            }
-          >
-            <IconPaymentInfo></IconPaymentInfo>
-            <div className="ml-3">Thông tin thanh toán</div>
-          </li>
-        </NavLink>
+
         <NavLink to="/address">
           <li
             className={

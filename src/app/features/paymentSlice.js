@@ -13,11 +13,19 @@ export const addOrderShipping = createAsyncThunk(
   }
 );
 
+export const paymentWithMomo = createAsyncThunk(
+  "order/paymentWithMomo",
+  async (order) => {
+    const response = await paymentApi.paymentWithMomo(order);
+    return response;
+  }
+);
+
 export const getOrdersByUser = createAsyncThunk(
   "product/orderofuser",
-  async (userId, { rejectWithValue }) => {
+  async (params, { rejectWithValue }) => {
     try {
-      const response = await paymentApi.getOrdersByUserId(userId);
+      const response = await paymentApi.getOrdersByUserId();
       return response;
     } catch (err) {
       return rejectWithValue(err.response.data);
@@ -44,6 +52,7 @@ const paymentSlice = createSlice({
     orders: [],
     isLoading: false,
     isError: false,
+    error: "",
   },
   extraReducers: {
     [addOrderShipping.pending]: (state, action) => {
@@ -56,6 +65,16 @@ const paymentSlice = createSlice({
     [addOrderShipping.rejected]: (state, action) => {
       state.loading = false;
       state.isError = true;
+    },
+    [paymentWithMomo.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [paymentWithMomo.rejected]: (state, action) => {
+      state.isLoading = false;
+      state.error = action.error;
+    },
+    [paymentWithMomo.fulfilled]: (state) => {
+      state.isLoading = false;
     },
     [getOrders.pending]: (state, action) => {
       state.isLoading = true;
@@ -73,7 +92,7 @@ const paymentSlice = createSlice({
     },
     [getOrdersByUser.fulfilled]: (state, action) => {
       state.isLoading = false;
-      state.itemsOrder = action.payload;
+      state.itemsOrder = action.payload.orders;
     },
     [getOrdersByUser.rejected]: (state, action) => {
       state.loading = false;

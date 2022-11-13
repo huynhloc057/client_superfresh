@@ -1,7 +1,7 @@
 import React from "react";
 import clsx from "clsx";
 import ContentHeader from "../shipping_components/ContentHeader";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
 import { Button } from "../../button";
 import { addDeliveryInfo } from "../../../app/features/addressSlice";

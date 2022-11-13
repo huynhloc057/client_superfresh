@@ -7,7 +7,7 @@ function BillDetail({ data }) {
     <WrappedItem>
       <div className={clsx("flex", "items-center", "justify-between")}>
         <span className={clsx("text-sm", "font-semibold", "mr-2")}>
-          x{data?.quantity}
+          x{data?.quantityChoose}
         </span>
         <span
           className={clsx(
@@ -22,7 +22,7 @@ function BillDetail({ data }) {
         </span>
       </div>
       <span className={clsx("text-sm", "font-normal")}>
-        {(data?.price * data?.quantity).toLocaleString(CURRENCY)}₫
+        {(data?.price * data?.quantityChoose).toLocaleString(CURRENCY)}₫
       </span>
     </WrappedItem>
   );

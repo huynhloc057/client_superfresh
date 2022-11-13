@@ -21,6 +21,7 @@ import {
   setPassword,
 } from "../app/features/authSlice";
 import GoogleLogin from "react-google-login";
+import CheckConnection from "../components/HOC/CheckConnection";
 
 const schema = yup
   .object()
@@ -54,18 +55,10 @@ const SignUpPage = () => {
   const handleSignUp = (formValue) => {
     dispatch(setPassword(formValue?.password));
     dispatch(register({ formValue, navigate, toast }));
-    if (errorMessage !== null) {
-      toast.error(errorMessage);
-    }
-    dispatch(resetError());
   };
   const handleLoginByGoogle = async (googleData) => {
     await dispatch(loginByGoogle({ token: googleData.tokenId }));
     navigate("/");
-  };
-
-  const responseGoogle = (response) => {
-    console.log(response);
   };
 
   useEffect(() => {
@@ -75,79 +68,83 @@ const SignUpPage = () => {
           "1032921802021-3v44l6mpbiikeiqbuo1pn0ji25tsr809.apps.googleusercontent.com",
       });
     });
-  }, []);
+    if (errorMessage !== null) {
+      toast.error(errorMessage);
+      dispatch(resetError());
+    }
+  }, [dispatch, errorMessage]);
 
   const { value: showPassword, handleToggleValue: handleTogglePassword } =
     useToggleValue(false);
   return (
-    <LayoutAnthentication heading="ĐĂNG KÝ TÀI KHOẢN">
-      
-      <form onSubmit={handleSubmit(handleSignUp)} method="post">
-        <FormGroup>
-          <Label htmlFor="name">Tên tài khoản *</Label>
-          <Input
-            control={control}
-            name="name"
-            placeholder="Jhon Doe"
-            autoComplete="off"
-            error={errors.name?.message}
-          ></Input>
-        </FormGroup>
-        <FormGroup>
-          <Label htmlFor="email">Email *</Label>
-          <Input
-            control={control}
-            name="email"
-            type="email"
-            placeholder="example@gmail.com"
-            error={errors.email?.message}
-            autoComplete="off"
-          ></Input>
-        </FormGroup>
-        <FormGroup>
-          <Label htmlFor="password">Mật khẩu *</Label>
-          <Input
-            control={control}
-            name="password"
-            type={`${showPassword ? "text" : "password"}`}
-            placeholder="Create a password"
-            error={errors.password?.message}
-          >
-            <IconEyeToggle
-              open={showPassword}
-              onClick={handleTogglePassword}
-            ></IconEyeToggle>
-          </Input>
-        </FormGroup>
-        <div
-        className="flex items-center justify-center w-full py-3  text-base font-semibold 
-       rounded-lg gap-x-3 text-text2 dark:text-white dark:border-darkStroke"
-      >
-        <GoogleLogin
-          clientId="1032921802021-3v44l6mpbiikeiqbuo1pn0ji25tsr809.apps.googleusercontent.com"
-          buttonText="Đăng nhập bằng Google"
-          onSuccess={handleLoginByGoogle}
-          onFailure={() => alert("Đăng nhập không thành công")}
-          // onFailure={responseGoogle}
-          cookiePolicy={"single_host_origin"}
-        />
-      </div>
-        <Button type="submit" className="w-full bg-[#008641] my-2 rounded-lg">
-          {isLoading ? (
-            <div class="spinner-border animate-spin inline-block w-8 h-8 border-4 rounded-full border-t-transparent"></div>
-          ) : (
-            "Đăng ký"
-          )}
-        </Button>
-        <p className="text-xs pt-2 font-normal text-center lg:text-sm text-text3 lg:mb-0">
-        Nếu đã có tài khoản?{"  "}
-        <Link to="/sign-in" className="font-medium underline text-[#008641]">
-          Đăng nhập
-        </Link>
-      </p>
-      
-      </form>
-    </LayoutAnthentication>
+    <CheckConnection>
+      <LayoutAnthentication heading="ĐĂNG KÝ TÀI KHOẢN">
+        <form onSubmit={handleSubmit(handleSignUp)} method="post">
+          <FormGroup>
+            <Label htmlFor="name">Tên tài khoản *</Label>
+            <Input
+              control={control}
+              name="name"
+              placeholder="Jhon Doe"
+              autoComplete="off"
+              error={errors.name?.message}
+            ></Input>
+          </FormGroup>
+          <FormGroup>
+            <Label htmlFor="email">Email *</Label>
+            <Input
+              control={control}
+              name="email"
+              type="email"
+              placeholder="example@gmail.com"
+              error={errors.email?.message}
+              autoComplete="off"
+            ></Input>
+          </FormGroup>
+          <FormGroup>
+            <Label htmlFor="password">Mật khẩu *</Label>
+            <Input
+              control={control}
+              name="password"
+              type={`${showPassword ? "text" : "password"}`}
+              placeholder="Create a password"
+              error={errors.password?.message}
+            >
+              <IconEyeToggle
+                open={showPassword}
+                onClick={handleTogglePassword}
+              ></IconEyeToggle>
+            </Input>
+          </FormGroup>
+          <div className="flex items-center justify-center w-full py-3 text-base font-semibold rounded-lg gap-x-3 text-text2 dark:text-white dark:border-darkStroke">
+            <GoogleLogin
+              clientId="1032921802021-3v44l6mpbiikeiqbuo1pn0ji25tsr809.apps.googleusercontent.com"
+              buttonText="Đăng nhập bằng Google"
+              onSuccess={handleLoginByGoogle}
+              onFailure={() => alert("Đăng nhập không thành công")}
+              // onFailure={responseGoogle}
+              cookiePolicy={"single_host_origin"}
+            />
+          </div>
+          <Button type="submit" className="w-full bg-[#008641] my-2 rounded-lg">
+            {isLoading ? (
+              <div class="spinner-border animate-spin inline-block w-8 h-8 border-4 rounded-full border-t-transparent"></div>
+            ) : (
+              "Đăng ký"
+            )}
+          </Button>
+          <p className="pt-2 text-xs font-normal text-center lg:text-sm text-text3 lg:mb-0">
+            Nếu đã có tài khoản?{"  "}
+            <Link
+              to="/sign-in"
+              className="font-medium underline text-[#008641]"
+            >
+              Đăng nhập
+            </Link>
+          </p>
+        </form>
+      </LayoutAnthentication>
+    </CheckConnection>
   );
 };
 

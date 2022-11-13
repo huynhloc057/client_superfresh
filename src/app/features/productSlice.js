@@ -61,6 +61,17 @@ export const getCategoryNameById = createAsyncThunk(
   }
 );
 
+export const addReviewProduct = createAsyncThunk(
+  "product/addReview",
+  async (review, { rejectWithValue }) => {
+    try {
+      const response = await productApi.addProductReview(review);
+      return response;
+    } catch (err) {
+      return rejectWithValue(err.response.data);
+    }
+  }
+);
 
 const productSlice = createSlice({
   name: "product",
@@ -77,6 +88,9 @@ const productSlice = createSlice({
   reducers: {
     setCategoryTab: (state, action) => {
       state.category = action.payload;
+    },
+    resetSuccessReview: (state, action) => {
+      state.isSuccess = false;
     },
   },
   extraReducers: {
@@ -142,8 +156,20 @@ const productSlice = createSlice({
       state.isError = true;
       state.errorMessage = action.payload;
     },
+    [addReviewProduct.pending]: (state, action) => {
+      state.isLoading = true;
+    },
+    [addReviewProduct.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      state.isSuccess = true;
+    },
+    [addReviewProduct.rejected]: (state, action) => {
+      state.loading = false;
+      state.isError = true;
+      state.errorMessage = action.payload;
+    },
   },
 });
 
-export const { setCategoryTab } = productSlice.actions;
+export const { setCategoryTab, resetSuccessReview } = productSlice.actions;
 export default productSlice.reducer;

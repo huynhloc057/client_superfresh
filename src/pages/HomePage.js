@@ -1,10 +1,11 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getDeliveryInfo } from "../app/features/addressSlice";
-import { setModalOpen, setResetCart } from "../app/features/cartSlice";
+import { setModalOpen } from "../app/features/cartSlice";
 import Banner from "../components/banner/Banner";
 import ListItemsCategory from "../components/banner/ListItemsCategory";
 import CategoryProduct from "../components/category/CategoryProduct";
+import CheckConnection from "../components/HOC/CheckConnection";
 import CategoryTopBar from "../modules/categorytop/CategoryTopBar";
 import Footer from "../modules/footer/Footer";
 import Header from "../modules/header/Header";
@@ -20,14 +21,16 @@ const HomePage = () => {
     dispatch(setModalOpen(!modalOpen));
   }, [dispatch, modalOpen]);
   return (
-    <div>
-      <Header></Header>
-      <CategoryTopBar></CategoryTopBar>
-      <Banner></Banner>
-      <ListItemsCategory></ListItemsCategory>
-      <CategoryProduct></CategoryProduct>
-      <Footer></Footer>
-    </div>
+    <CheckConnection>
+      <div>
+        <Header></Header>
+        <CategoryTopBar></CategoryTopBar>
+        <Banner></Banner>
+        <ListItemsCategory></ListItemsCategory>
+        <CategoryProduct></CategoryProduct>
+        <Footer></Footer>
+      </div>
+    </CheckConnection>
   );
 };
 

@@ -30,7 +30,7 @@ function PaymentProduct({ data }) {
           <div className={clsx("w-full")}>
             <Field data={data.name} type={NAME} />
             <div className="flex justify-between">
-              <Field data={`SL: x${data.quantity}`} />
+              <Field data={`SL: x${data.quantityChoose}`} />
               <Field data={data.price.toLocaleString(CURRENCY)}>
                 <span className={clsx("text-lg", "text-red-500")}>₫</span>
               </Field>
@@ -39,14 +39,21 @@ function PaymentProduct({ data }) {
         </div>
       </div>
       <div
-        className={clsx("flex-1", "w-full", "border-l", "border-dashed", "border-[#dcdcdc]", "pl-[30px]")}
+        className={clsx(
+          "flex-1",
+          "w-full",
+          "border-l",
+          "border-dashed",
+          "border-[#dcdcdc]",
+          "pl-[30px]"
+        )}
         style={{ borderColor: "rgb(221 221 227 / var(--tw-border-opacity))" }}
       >
         <div
           className={clsx("flex", "items-start", "rounded-lg", "py-2", "px-4")}
         >
           <div className="block text-sm max-w-sm font-medium tracking-widest text-[#808089] truncate">
-            {`Thành tiền: ${(data.price * data.quantity).toLocaleString(
+            {`Thành tiền: ${(data.price * data.quantityChoose).toLocaleString(
               CURRENCY
             )}`}
             <span className={clsx("text-lg", "text-red-500")}>₫</span>

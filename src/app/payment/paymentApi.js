@@ -5,19 +5,22 @@ export const paymentApi = {
     const url = `${baseURL.order}/add`;
     return axiosClient.post(url, order);
   },
-
-  getOrdersByUserId(userId) {
-    const url = `${baseURL.order}/orders?userId=${userId}`;
-    return axiosClient.get(url);
+  paymentWithMomo(order) {
+    const url = `${baseURL.order}/paymentWithMomo`;
+    return axiosClient.post(url, order);
+  },
+  getOrdersByUserId() {
+    const url = `${baseURL.order}/getOrders`;
+    return axiosClient.post(url);
   },
 
   getAllOrder() {
-    const url = `${baseURL.product}/orders`;
-    return axiosClient.get(url);
+    const url = `${baseURL.order}/getOrders`;
+    return axiosClient.post(url);
   },
 
   getOrderById(orderId) {
-    const url = `${baseURL.product}/orders?id=${orderId}`;
+    const url = `${baseURL.order}/orders?id=${orderId}`;
     return axiosClient.get(url);
   },
 

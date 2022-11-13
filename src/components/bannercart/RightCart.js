@@ -61,6 +61,7 @@ const RightCart = ({ total, count, modalOpen }) => {
     dispatch(getDeliveryInfo());
     setDefaultDeliveryInfo();
     dispatch(setModalOpen(!modalOpen));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch]);
 
   useEffect(() => {
@@ -71,6 +72,7 @@ const RightCart = ({ total, count, modalOpen }) => {
       }
     }
     dispatch(setCurrentTotal(temp));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [quantity]);
 
   const handleOpen = useCallback(() => setOpen(true), []);

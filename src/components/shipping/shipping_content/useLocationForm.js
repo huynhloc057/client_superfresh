@@ -70,6 +70,7 @@ function useLocationForm(shouldFetchInitialLocation) {
         setState({ ...state, cityOptions: options });
       }
     })();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -81,6 +82,7 @@ function useLocationForm(shouldFetchInitialLocation) {
       );
       setState({ ...state, districtOptions: options });
     })();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedCity]);
 
   useEffect(() => {
@@ -92,6 +94,7 @@ function useLocationForm(shouldFetchInitialLocation) {
       );
       setState({ ...state, wardOptions: options });
     })();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedDistrict]);
 
   function onCitySelect(option) {

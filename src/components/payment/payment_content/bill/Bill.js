@@ -20,7 +20,7 @@ function Bill() {
   );
   const { address } = useSelector((state) => state.address);
   const { userInfo } = useSelector((state) => state.auth);
-
+  const [paymentType, setPaymentType] = useState("cod");
   const [toggleBillDetail, setToggleBillDetail] = useState(false);
   const TOTAL = useMemo(
     () =>
@@ -100,6 +100,7 @@ function Bill() {
     }).then((result) => {
       if (result.isConfirmed) {
         if (checkedPayment === 0) {
+          setPaymentType("cod");
           const sumPrice = currentTotal + Number(voucher) + Number(40000);
           const data = {
             items,

@@ -2,7 +2,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import Swal from "sweetalert2";
 import { CURRENCY } from "../payment/payment_content/constraint";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 import {
   removeFromCart,
@@ -63,7 +63,6 @@ const ItemCart = (props) => {
     //   }
     // }
   };
-  const { products } = useSelector((state) => state.product);
   return (
     <div>
       <div className="mb-10 item-product">

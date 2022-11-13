@@ -61,31 +61,14 @@ export const PRODUCTS = [
   },
 ];
 
-// export const TYPE_SHIPS = [
-//     {
-//         index: 1,
-//         src: 'https://salt.tikicdn.com/ts/upload/2a/47/46/0e038f5927f3af308b4500e5b243bcf6.png',
-//         content: 'Giao hàng tiết kiệm',
-//         quantity: 2
-//     },
-//     {
-//         index: 2,
-//         src: 'https://salt.tikicdn.com/ts/upload/2a/47/46/0e038f5927f3af308b4500e5b243bcf6.png',
-//         content: 'Giao hàng tiết kiệm',
-//         quantity: 3
-//     },
-// ]
-
 export const PAY_METHODS = [
   {
     src: "https://frontend.tikicdn.com/_desktop-next/static/img/icons/checkout/icon-payment-method-cod.svg",
     title: "Thanh toán tiền mặc khi nhận hàng",
   },
   {
-    src: "https://frontend.tikicdn.com/_desktop-next/static/img/icons/checkout/icon-payment-method-credit.svg",
-    title: "Thanh toán bằng thẻ quốc tế Master",
-    subSrc:
-      "https://frontend.tikicdn.com/_desktop-next/static/img/icons/checkout/icon-payment-credit-type-mastercard.svg?v=1",
+    src: "https://frontend.tikicdn.com/_desktop-next/static/img/icons/checkout/icon-payment-method-momo.svg",
+    title: "Thanh toán bằng ví Momo",
   },
 ];
 

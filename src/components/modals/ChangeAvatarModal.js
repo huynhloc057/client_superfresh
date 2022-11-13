@@ -5,7 +5,7 @@ import Avatar from "react-avatar-edit";
 import Axios from "axios";
 
 export default function ChangeAvatarModal({ isOpen, changeAvatar }) {
-  const [src, setSrc] = useState(null);
+  const [src] = useState(null);
   const [preview, setPreview] = useState(null);
 
   const onClose = () => {

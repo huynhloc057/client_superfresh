@@ -108,14 +108,14 @@ const userSlice = createSlice({
     [login.rejected]: (state, action) => {
       state.isLoading = false;
       state.isSuccess = false;
-      state.errorMessage = action.payload;
+      state.errorMessage = action.payload.error;
     },
     [loginByGoogle.pending]: (state) => {
       state.isLoading = true;
     },
     [loginByGoogle.rejected]: (state, action) => {
       state.isLoading = false;
-      state.errorMessage = action.payload;
+      state.errorMessage = action.payload.error;
     },
     [loginByGoogle.fulfilled]: (state, action) => {
       state.loading = false;
@@ -134,7 +134,7 @@ const userSlice = createSlice({
     [register.rejected]: (state, { payload }) => {
       state.isLoading = false;
       state.isSuccess = false;
-      state.errorMessage = payload;
+      state.errorMessage = payload.error;
     },
     [getUserById.fulfilled]: (state, action) => {
       state.isLoading = false;
@@ -147,7 +147,7 @@ const userSlice = createSlice({
     [getUserById.rejected]: (state, { payload }) => {
       state.isLoading = false;
       state.isSuccess = false;
-      state.errorMessage = payload;
+      state.errorMessage = payload.error;
     },
     [updateUserInfo.fulfilled]: (state, action) => {
       state.isLoading = false;
@@ -160,7 +160,7 @@ const userSlice = createSlice({
     [updateUserInfo.rejected]: (state, { payload }) => {
       state.isLoading = false;
       state.isSuccess = false;
-      state.errorMessage = payload;
+      state.errorMessage = payload.error;
     },
   },
 });

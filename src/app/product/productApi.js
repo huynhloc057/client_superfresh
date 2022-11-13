@@ -3,11 +3,11 @@ import { axiosClient, baseURL } from "../axiosClient";
 export const productApi = {
   getAllProduct() {
     const url = `${baseURL.product}/getProducts`;
-    return axiosClient.get(url);
+    return axiosClient.post(url);
   },
   getProductBySlug(slug) {
     const url = `${baseURL.product}/${slug}`;
-    return axiosClient.get(url);
+    return axiosClient.post(url);
   },
   getAllCategory() {
     const url = `${baseURL.category}/getCategories`;
@@ -15,7 +15,7 @@ export const productApi = {
   },
   getProductByCategoryId(categoryId) {
     const url = `${baseURL.product}/getProductsByCategory/${categoryId}`;
-    return axiosClient.get(url);
+    return axiosClient.post(url);
   },
   getCategoryById(categoryId) {
     const url = `${baseURL.product}/categories?id=${categoryId}`;
@@ -25,5 +25,9 @@ export const productApi = {
   getComments() {
     const url = `${baseURL.product}/comments`;
     return axiosClient.get(url);
+  },
+  addProductReview(review) {
+    const url = `${baseURL.product}/addProductReview`;
+    return axiosClient.post(url, review);
   },
 };

@@ -7,12 +7,21 @@ import { setCheckedPayment } from "../../../../app/features/cartSlice";
 function ChoosePays() {
   const [indexMethod, setIndexMethod] = useState(0);
   const dispatch = useDispatch();
-useEffect(() => {
-  dispatch(setCheckedPayment(indexMethod));
-
-},[indexMethod])
+  useEffect(() => {
+    dispatch(setCheckedPayment(indexMethod));
+  }, [indexMethod, dispatch]);
   return (
-    <div className={clsx("w-[54.25rem]", "bg-white", "p-4", "rounded", "border", "border-[#dcdcdc]", "border-dashed")}>
+    <div
+      className={clsx(
+        "w-[54.25rem]",
+        "bg-white",
+        "p-4",
+        "rounded",
+        "border",
+        "border-[#dcdcdc]",
+        "border-dashed"
+      )}
+    >
       <div
         className={clsx(
           "not-italic",
