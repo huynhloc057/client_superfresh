@@ -1,11 +1,11 @@
 import axios from "axios";
 
 export const baseURL = {
-  user: "http://localhost:5000/api/auth",
-  product: "http://localhost:5000/api/product",
-  category: "http://localhost:5000/api/category",
-  order: "http://localhost:5000/api/order",
-  address: "http://localhost:5000/api/deliveryInfo",
+  user: "https://apisuperfreshute.herokuapp.com/api/auth",
+  product: "https://apisuperfreshute.herokuapp.com/api/product",
+  category: "https://apisuperfreshute.herokuapp.com/api/category",
+  order: "https://apisuperfreshute.herokuapp.com/api/order",
+  address: "https://apisuperfreshute.herokuapp.com/api/deliveryInfo",
 };
 
 const axiosClient = axios.create({
