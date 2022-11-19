@@ -31,9 +31,10 @@ export const register = createAsyncThunk(
 
 export const updateUserInfo = createAsyncThunk(
   'auth/updateUserInfo',
-  async (form, { rejectWithValue }) => {
+  async ({ form, toast }, { rejectWithValue }) => {
     try {
       const response = await userApi.updateUserInfo(form)
+      toast.success('Cập nhật thông tin thành công')
       return response
     } catch (err) {
       return rejectWithValue(err.response.data)
@@ -157,7 +158,6 @@ const userSlice = createSlice({
       state.isLoading = true
     },
     [updateUserInfo.rejected]: (state, { payload }) => {
-      console.log(payload)
       state.isLoading = false
       state.isSuccess = false
       state.errorMessage = payload

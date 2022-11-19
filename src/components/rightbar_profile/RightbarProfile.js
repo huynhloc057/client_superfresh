@@ -3,9 +3,7 @@ import { useRef, useEffect } from 'react'
 import { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { NavLink } from 'react-router-dom'
-import { country } from '../common/dataCountries'
 import { Form, Button } from 'react-bootstrap'
-import ChangeAvatarModal from '../modals/ChangeAvatarModal'
 import { getUserById, updateUserInfo } from '../../app/features/authSlice'
 import { toast } from 'react-toastify'
 import FormContainer from '../form/FormContainer'
@@ -21,7 +19,7 @@ export default function Rightbar_Profile() {
   const { isSuccess } = useSelector((state) => state.auth)
 
   useEffect(() => {
-    dispatch(getUserById())
+    if (isSuccess) dispatch(getUserById())
   }, [dispatch, isSuccess, userInfo])
 
   const submitHandler = (e) => {
@@ -29,7 +27,7 @@ export default function Rightbar_Profile() {
     const form = new FormData()
     form.append('name', username)
     form.append('profilePicture', avatar)
-    dispatch(updateUserInfo(form))
+    dispatch(updateUserInfo({ form, toast }))
     dispatch(getUserById())
   }
   return (
