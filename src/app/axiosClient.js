@@ -2,6 +2,7 @@ import axios from "axios";
 
 export const baseURL = {
   user: "http://localhost:5000/api/auth",
+  auth: "http://localhost:5000/api/user",
   product: "http://localhost:5000/api/product",
   category: "http://localhost:5000/api/category",
   order: "http://localhost:5000/api/order",

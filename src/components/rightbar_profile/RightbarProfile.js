@@ -1,44 +1,39 @@
 import { useForm } from 'react-hook-form'
-import { useRef } from 'react'
+import { useRef, useEffect } from 'react'
 import { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import { country } from '../common/dataCountries'
+import { Form, Button } from 'react-bootstrap'
 import ChangeAvatarModal from '../modals/ChangeAvatarModal'
 import { getUserById, updateUserInfo } from '../../app/features/authSlice'
 import { toast } from 'react-toastify'
+import FormContainer from '../form/FormContainer'
 
 export default function Rightbar_Profile() {
   const { userInfo } = useSelector((state) => state.auth)
-  const { register, handleSubmit } = useForm()
-  const imgSourceRef = useRef()
-  const dateRef = useRef()
   const [isOpen, isOpenModal] = useState(false)
   const emailRef = useRef()
   const dispatch = useDispatch()
+  const [username, setUsername] = useState(userInfo?.user?.name)
   const [avatar, setAvatar] = useState(userInfo?.user?.profilePicture)
-
   const _id = userInfo?.user?._id
+  const { isSuccess } = useSelector((state) => state.auth)
 
-  const onSubmit = ({ name, from }) => {
-    const user = {
-      _id,
-      name,
-      email: emailRef.current.value,
-      from,
-      profilePicture: imgSourceRef.current.currentSrc,
-      dateOfBirth: dateRef.current.value,
-    }
-    dispatch(updateUserInfo({ user, toast }))
+  useEffect(() => {
+    dispatch(getUserById())
+  }, [dispatch, isSuccess, userInfo])
+
+  const submitHandler = (e) => {
+    e.preventDefault()
+    const form = new FormData()
+    form.append('name', username)
+    form.append('profilePicture', avatar)
+    dispatch(updateUserInfo(form))
     dispatch(getUserById())
   }
-
   return (
-    <form
-      onSubmit={handleSubmit(onSubmit)}
-      className='mr-32 basis-10/12'
-      style={{ height: '700px' }}
-    >
+    <div className='mr-32 basis-10/12' style={{ height: '700px' }}>
       <div className='mt-2 mb-3 text-xl'>Thông tin tài khoản</div>
       <div>
         <div className='flex text-sm formProfile'>
@@ -46,77 +41,33 @@ export default function Rightbar_Profile() {
             className='p-4 bg-white basis-3/5 border border-dashed border-[#dcdcdc]'
             style={{ height: '500px' }}
           >
-            <div className='text-lg'>Thông tin cá nhân</div>
-
-            {/* Nickname-Name Section */}
-            <div className='flex'>
-              <div className='flex-col'>
-                <img
-                  className='mx-auto my-4 border-4 h-28 w-28 border-[#64AA86]'
-                  style={{ borderRadius: '50%' }}
-                  src={avatar}
-                  alt=''
-                  ref={imgSourceRef}
-                ></img>
-
-                <button
-                  type='button'
-                  className='px-2 text-white bg-[#008641] border rounded-lg w-fit h-9'
-                  onClick={() => {
-                    isOpenModal(true)
-                  }}
-                >
-                  Thay đổi avatar
-                </button>
-                {isOpen && (
-                  <ChangeAvatarModal
-                    isOpen={isOpenModal}
-                    changeAvatar={setAvatar}
-                  />
-                )}
-              </div>
-              <div className='flex-col mt-4 mb-4 basis-3/4 '>
-                <div className='flex justify-evenly mt-1 ml-3'>
-                  <label className='p-2' htmlFor='name'>
-                    Họ &amp; tên
-                  </label>
-                  <input
-                    className='p-2 mr-3 border-2 rounded-md border-slate-200 focus:border-blue-300'
+            <div className='text-lg my-2'>Thông tin cá nhân</div>
+            <FormContainer>
+              <Form className='formContainer' onSubmit={submitHandler}>
+                <Form.Group className='formGroup' controlId='username'>
+                  <Form.Label>Họ và tên</Form.Label>
+                  <Form.Control
                     type='text'
-                    name=''
-                    id='name'
-                    {...register('name')}
-                    placeholder='Thêm họ tên'
-                    defaultValue={`${userInfo?.user?.name}`}
-                  />
+                    defaultValue={username}
+                    // value={userName}
+                    onChange={(e) => setUsername(e.target.value)}
+                  ></Form.Control>
+                </Form.Group>
+                <Form.Group className='formGroup' controlId='avatar'>
+                  <Form.Label>Avatar</Form.Label>
+                  <Form.Control
+                    type='file'
+                    accept='image/x-png,image/gif,image/jpeg'
+                    onChange={(e) => setAvatar(e.target.files[0])}
+                  ></Form.Control>
+                </Form.Group>
+                <div className='buttonContainer'>
+                  <Button type='submit' variant='primary' className='mt-3'>
+                    Cập nhật
+                  </Button>
                 </div>
-
-                <div className='flex justify-evenly ml-3 mt-9'>
-                  <label className='p-2' htmlFor='nickname'>
-                    Email
-                  </label>
-                  <input
-                    className='p-2 mr-3 border-2 rounded-md border-slate-200 focus:border-blue-300'
-                    type='text'
-                    name=''
-                    id='email'
-                    // placeholder='Thêm nickname'
-                    maxLength={128}
-                    defaultValue={`${userInfo?.user?.email}`}
-                    {...register('email')}
-                  />
-                </div>
-              </div>
-            </div>
-
-            <div className='flex justify-center w-full'>
-              <button
-                className='px-2 text-white bg-[#008641] border rounded-lg w-fit h-9 '
-                type='submit'
-              >
-                Lưu thay đổi
-              </button>
-            </div>
+              </Form>
+            </FormContainer>
           </div>
 
           <div className='flex-col p-4 ml-1 bg-white basis-2/5 h-[500px] border border-dashed border-[#dcdcdc]'>
@@ -201,6 +152,6 @@ export default function Rightbar_Profile() {
           </div>
         </div>
       </div>
-    </form>
+    </div>
   )
 }
