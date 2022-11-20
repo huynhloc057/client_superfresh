@@ -15,7 +15,7 @@ const ProductCard = ({ thumbnailUrl, name, quantitySell, price, id, url }) => {
         alt=""
         className="object-cover h-[70%] w-full"
       />
-      <h3 className="mt-3 mb-1 text-xs leading-5 line-clamp-2 text-textProduct">
+      <h3 className="mt-3 mb-1 text-xs leading-5 line-clamp-1 text-textProduct">
         {name}
       </h3>
 

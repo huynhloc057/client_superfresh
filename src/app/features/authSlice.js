@@ -30,11 +30,11 @@ export const register = createAsyncThunk(
 );
 
 export const updateUserInfo = createAsyncThunk(
-  "auth/updateUser",
-  async ({ user, toast }, { rejectWithValue }) => {
+  "auth/updateUserInfo",
+  async ({ form, toast }, { rejectWithValue }) => {
     try {
-      const response = await userApi.updateUser(user);
-      toast.success("Cập nhật thanh cong!");
+      const response = await userApi.updateUserInfo(form);
+      toast.success("Cập nhật thông tin thành công");
       return response;
     } catch (err) {
       return rejectWithValue(err.response.data);
