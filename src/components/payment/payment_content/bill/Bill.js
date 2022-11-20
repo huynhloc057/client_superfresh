@@ -18,6 +18,7 @@ function Bill() {
   const { items, voucher, checkedPayment, currentTotal } = useSelector(
     (state) => state.cart
   );
+  console.log(items)
   const { address } = useSelector((state) => state.address);
   const { userInfo } = useSelector((state) => state.auth);
   const [paymentType, setPaymentType] = useState("cod");
@@ -25,7 +26,7 @@ function Bill() {
   const TOTAL = useMemo(
     () =>
       items.reduce((total, product) => {
-        return total + product.price * product.quantity;
+        return total + product.price * product.quantityChoose;
       }, 0),
     [items]
   );
@@ -157,7 +158,7 @@ function Bill() {
         <span
           className={clsx("text-sm", "font-semibold", "text-[#808089]", "mr-1")}
         >
-          {items.length} Sản phẩm.
+          {items.length} Sản phẩm
         </span>
         <button
           className={clsx(

@@ -10,8 +10,8 @@ const ProductList = ({ products, isLoading }) => {
   };
 
   return (
-    <div className="flex w-full bg-white mb-12">
-      <div className="flex flex-col w-full mx-24 border-t border-dashed border-[#dcdcdc] pt-8">
+    <div className="flex w-full bg-white">
+      <div className="flex flex-col w-full mx-24 border-t border-dashed border-[#dcdcdc] pt-8 pb-12">
         <div className="pt-[10px] px-0 pb-[30px] text-center">
           <div className="m-0 p-0">
             <h2 className="text-[24px] leading-[1.3] m-0 font-bold uppercase">

@@ -24,13 +24,14 @@ export default function ProductDetailContent() {
   function add() {
     if (
       (!productChoose && T < productDetail?.quantity) ||
-      (T < productDetail?.quantity &&
-        productChoose?.quantityChoose < productDetail?.quantity)
+      (productChoose &&
+        T + productChoose?.quantityChoose < productDetail?.quantity)
     ) {
       setT((T) => T + 1);
     } else if (
-      productChoose?.quantityChoose === productDetail?.quantity ||
-      T >= productDetail?.quantity
+      (!productChoose && T >= productDetail?.quantity) ||
+      (productChoose &&
+        T + productChoose?.quantityChoose === productDetail?.quantity)
     ) {
       showAlert(productDetail?.quantity);
     }

@@ -11,7 +11,7 @@ export default function Leftbar({ activeButton }) {
 
   return (
     <div className="flex-col ml-32 basis-3/12" style={{ height: "700px" }}>
-      <div className="flex">
+      <div className="flex justify-center items-center">
         <img
           className="w-12 h-12"
           style={{ borderRadius: "50%" }}
@@ -19,7 +19,7 @@ export default function Leftbar({ activeButton }) {
           alt="avatar"
         ></img>
         <div className="flex-col mx-2">
-          <div className="text-sm">Tài khoản của</div>
+          {/* <div className="text-sm">Tài khoản của</div> */}
           <div className="text-lg font-bold ">{userInfo?.user?.name}</div>
         </div>
       </div>

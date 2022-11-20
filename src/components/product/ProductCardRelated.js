@@ -15,7 +15,7 @@ const ProductCardRelated = ({
       href={`/product/${url}`}
       className="block h-full p-3 bg-white border-none cursor-pointer rounded-xl hover:shadow-sdproduct"
     >
-      <img src={`${thumbnailUrl}`} alt="" className="object-cover" />
+      <img src={`${thumbnailUrl}`} alt="" className="object-cover h-[170px]" />
       <h3 className="mt-3 mb-1 text-xs leading-5 line-clamp-2 text-textProduct">
         {name}
       </h3>

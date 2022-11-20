@@ -11,7 +11,7 @@ export default function DiscountCode({ activeButton }) {
       <Header></Header>
       <div className="bg-white">
         <Headerpage headerpage={"Mã giảm giá"}></Headerpage>
-        <div className="flex">
+        <div className="flex my-4">
           <Leftbar activeButton={activeButton}></Leftbar>
           <RightBarDiscountCode></RightBarDiscountCode>
         </div>

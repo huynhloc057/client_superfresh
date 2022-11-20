@@ -42,10 +42,10 @@ export default function RigthbarAddress() {
           <p className="text-blue-500 text-[15px]">Thêm địa chỉ mới</p>
         </div>
       </NavLink>
-      <div className="p-[17px] bg-white mb-[15px] flex justify-between border border-dashed border-[#dcdcdc]">
-        <div>
-          <div className="mb-[10px] w-full">{userInfo?.user?.name}</div>
-          {deliveryInfo.address.map((adr) => (
+      {deliveryInfo.address?.map((adr) => (
+        <div className="p-[17px] bg-white mb-[15px] flex justify-between border border-dashed border-[#dcdcdc]">
+          <div>
+            <div className="mb-[10px] w-full">{userInfo?.user?.name}</div>
             <div
               className={`mt-3 w-full ${adr.isDefault ? "bg-slate-200" : ""}`}
             >
@@ -80,9 +80,9 @@ export default function RigthbarAddress() {
                 Xoá
               </button>
             </div>
-          ))}
+          </div>
         </div>
-      </div>
+      ))}
     </div>
   );
 }

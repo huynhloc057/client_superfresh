@@ -57,7 +57,7 @@ export default function RightbarEditAddress() {
       <div className="mt-2 mb-3 text-xl">Cập nhật địa chỉ</div>
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="bg-white h-fit py-[30px] px-[20px]"
+        className="bg-white h-fit py-[30px] px-[20px] border border-dashed border-[#dcdcdc]"
       >
         <div className="flex items-center flex-1 justify-between w-[600px] mb-4 h-[34px]">
           <label className="text-[13px]">Họ và tên:</label>

@@ -9,12 +9,12 @@ export const userApi = {
     const url = `${baseURL.user}/signin`;
     return axiosClient.post(url, formValue);
   },
-  loginByGoogle: (token) => {
-    return axiosClient.post(`${baseURL.user}/signin/google`, token);
-  },
-  updateUser(user) {
-    const url = `${baseURL.user}/user/update`;
-    return axiosClient.post(url, user);
+  loginByGoogle: (token) =>
+    axiosClient.post(`${baseURL.user}/signin/google`, token),
+  updateUserInfo(form) {
+    const url = `${baseURL.auth}/updateUserInfo`;
+    console.log(form);
+    return axiosClient.post(url, form);
   },
   getUser() {
     const url = `${baseURL.user}/isUserLoggedIn`;

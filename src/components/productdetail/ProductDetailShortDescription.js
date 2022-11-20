@@ -11,7 +11,7 @@ export default function ProductDetailShortDescription() {
           <h2 className="pt-2 pb-2 pl-4 pr-4 m-0 text-xl font-normal leading-8 capitalize">
             mô tả sản phẩm{" "}
           </h2>
-          <p className="pt-0 pb-2 pl-4 pr-4 leading-5">
+          <p className="pt-0 pb-2 pl-4 pr-4 leading-5 text-justify">
             {productDetail?.description}
           </p>
         </div>

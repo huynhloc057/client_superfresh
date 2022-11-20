@@ -12,7 +12,7 @@ export default function Address({ activeButton }) {
       <Header></Header>
       <div className="bg-white">
         <Headerpage headerpage={"Quản lý đơn hàng"}></Headerpage>
-        <div className="flex">
+        <div className="flex my-4">
           <Leftbar activeButton={activeButton}></Leftbar>
           <RigthbarAddress></RigthbarAddress>
         </div>

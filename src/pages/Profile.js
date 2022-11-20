@@ -12,7 +12,7 @@ export default function Profile({ activeButton }) {
       <Header></Header>
       <div className="bg-white">
         <Headerpage headerpage={"Thông tin cá nhân"}></Headerpage>
-        <div className="flex">
+        <div className="flex my-4">
           <Leftbar activeButton={activeButton}></Leftbar>
           <RightbarProfile></RightbarProfile>
         </div>

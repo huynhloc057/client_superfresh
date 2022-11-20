@@ -53,7 +53,7 @@ const Search = () => {
               .slice(0, 10)
               .map((item, index) => (
                 <a
-                  className="px-3 py-3 text-sm cursor-pointer text-start font-awesome line-clamp-1 border-t border-dashed border-[#dcdcdc]"
+                  className="px-3 py-3 text-sm cursor-pointer text-start font-awesome line-clamp-1 border border-dashed border-[#dcdcdc]"
                   href={`/product/${item.slug}`}
                   onClick={() => onSearch(item.name)}
                   key={index}

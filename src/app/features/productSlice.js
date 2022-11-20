@@ -1,65 +1,65 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { productApi } from "../product/productApi";
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+import { productApi } from '../product/productApi'
 
 export const getProducts = createAsyncThunk(
-  "product/allProduct",
+  'product/allProduct',
   async (params, { rejectWithValue }) => {
     try {
-      const response = await productApi.getAllProduct();
-      return response;
+      const response = await productApi.getAllProduct()
+      return response
     } catch (err) {
-      return rejectWithValue(err.response.data);
+      return rejectWithValue(err.response.data)
     }
   }
-);
+)
 
 export const getProductDetail = createAsyncThunk(
-  "product/detail",
+  'product/detail',
   async (slug, { rejectWithValue }) => {
     try {
-      const response = await productApi.getProductBySlug(slug);
-      return response;
+      const response = await productApi.getProductBySlug(slug)
+      return response
     } catch (err) {
-      return rejectWithValue(err.response.data);
+      return rejectWithValue(err.response.data)
     }
   }
-);
+)
 
 export const getCategories = createAsyncThunk(
-  "product/categories",
+  'product/categories',
   async (params, { rejectWithValue }) => {
     try {
-      const response = await productApi.getAllCategory();
-      return response;
+      const response = await productApi.getAllCategory()
+      return response
     } catch (err) {
-      return rejectWithValue(err.response.data);
+      return rejectWithValue(err.response.data)
     }
   }
-);
+)
 
 export const getProductByCategory = createAsyncThunk(
-  "product/productofcategory",
+  'product/productofcategory',
   async (categoryId, { rejectWithValue }) => {
     try {
-      const response = await productApi.getProductByCategoryId(categoryId);
-      return response;
+      const response = await productApi.getProductByCategoryId(categoryId)
+      return response
     } catch (err) {
-      return rejectWithValue(err.response.data);
+      return rejectWithValue(err.response.data)
     }
   }
-);
+)
 
 export const getCategoryNameById = createAsyncThunk(
-  "product/categoryName",
+  'product/categoryName',
   async ({ categoryId }, { rejectWithValue }) => {
     try {
-      const response = await productApi.getCategoryById(categoryId);
-      return response;
+      const response = await productApi.getCategoryById(categoryId)
+      return response
     } catch (err) {
-      return rejectWithValue(err.response.data);
+      return rejectWithValue(err.response.data)
     }
   }
-);
+)
 
 export const addReviewProduct = createAsyncThunk(
   "product/addReview",
@@ -74,7 +74,7 @@ export const addReviewProduct = createAsyncThunk(
 );
 
 const productSlice = createSlice({
-  name: "product",
+  name: 'product',
   initialState: {
     products: [],
     productDetail: {},
@@ -83,11 +83,14 @@ const productSlice = createSlice({
     isLoading: false,
     isSuccess: false,
     isError: false,
-    errorMessage: "",
+    errorMessage: '',
   },
   reducers: {
     setCategoryTab: (state, action) => {
-      state.category = action.payload;
+      state.category = action.payload
+    },
+    resetSuccessReview:(state, action) => {
+      state.isSuccess = false
     },
     resetSuccessReview: (state, action) => {
       state.isSuccess = false;
@@ -95,66 +98,78 @@ const productSlice = createSlice({
   },
   extraReducers: {
     [getProductDetail.pending]: (state, action) => {
-      state.isLoading = true;
+      state.isLoading = true
     },
     [getProductDetail.fulfilled]: (state, { payload }) => {
-      state.isLoading = false;
-      state.productDetail = payload.product;
+      state.isLoading = false
+      state.productDetail = payload.product
     },
     [getProductDetail.rejected]: (state, action) => {
-      state.loading = false;
-      state.isError = true;
-      state.errorMessage = action.payload;
+      state.isLoading = false
+      state.isError = true
+      state.errorMessage = action.payload
     },
     [getProducts.pending]: (state, action) => {
-      state.isLoading = true;
+      state.isLoading = true
     },
     [getProducts.fulfilled]: (state, { payload }) => {
-      state.isLoading = false;
-      state.products = payload.products;
+      state.isLoading = false
+      state.products = payload.products
     },
     [getProducts.rejected]: (state, action) => {
-      state.loading = false;
-      state.isError = true;
-      state.errorMessage = action.payload;
+      state.isLoading = false
+      state.isError = true
+      state.errorMessage = action.payload
     },
 
     // end updateProduct
     [getCategories.pending]: (state, action) => {
-      state.isLoading = true;
+      state.isLoading = true
     },
     [getCategories.fulfilled]: (state, { payload }) => {
-      state.isLoading = false;
-      state.categories = payload.categories;
+      state.isLoading = false
+      state.categories = payload.categories
     },
     [getCategories.rejected]: (state, action) => {
-      state.loading = false;
-      state.isError = true;
-      state.errorMessage = action.payload;
+      state.isLoading = false
+      state.isError = true
+      state.errorMessage = action.payload
     },
     [getProductByCategory.pending]: (state, action) => {
-      state.isLoading = true;
+      state.isLoading = true
     },
     [getProductByCategory.fulfilled]: (state, { payload }) => {
-      state.isLoading = false;
-      state.products = payload.product;
+      state.isLoading = false
+      state.products = payload.product
     },
     [getProductByCategory.rejected]: (state, action) => {
-      state.loading = false;
-      state.isError = true;
-      state.errorMessage = action.payload;
+      state.isLoading = false
+      state.isError = true
+      state.errorMessage = action.payload
     },
     [getCategoryNameById.pending]: (state, action) => {
-      state.isLoading = true;
+      state.isLoading = true
     },
     [getCategoryNameById.fulfilled]: (state, action) => {
-      state.isLoading = false;
-      state.category = action.payload;
+      state.isLoading = false
+      state.category = action.payload
     },
     [getCategoryNameById.rejected]: (state, action) => {
-      state.loading = false;
-      state.isError = true;
-      state.errorMessage = action.payload;
+      state.isLoading = false
+      state.isError = true
+      state.errorMessage = action.payload
+    },
+    [addReviewProduct.pending]: (state, action) => {
+      state.isLoading = true
+    },
+    [addReviewProduct.fulfilled]: (state, action) => {
+      state.isLoading = false
+      state.isSuccess = true
+    },
+    [addReviewProduct.rejected]: (state, action) => {
+      state.isLoading = false
+      state.isError = true
+      state.errorMessage = action.payload
     },
     [addReviewProduct.pending]: (state, action) => {
       state.isLoading = true;
@@ -169,7 +184,7 @@ const productSlice = createSlice({
       state.errorMessage = action.payload;
     },
   },
-});
+})
 
 export const { setCategoryTab, resetSuccessReview } = productSlice.actions;
 export default productSlice.reducer;

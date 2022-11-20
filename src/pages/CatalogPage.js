@@ -21,6 +21,11 @@ import ProductCardLoading from "../components/product/ProductCardLoading";
 
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
+
+import banner2 from "../image/banner2.png";
+import banner4 from "../image/banner4.png";
+import banner5 from "../image/banner5.png";
+import banner6 from "../image/banner6.png";
 import CheckConnection from "../components/HOC/CheckConnection";
 
 const data = [
@@ -35,6 +40,25 @@ const data = [
   {
     id: 3,
     name: "Giá cao",
+  },
+];
+
+export const banners = [
+  {
+    id: 1,
+    url: `${banner2}`,
+  },
+  {
+    id: 2,
+    url: `${banner4}`,
+  },
+  {
+    id: 3,
+    url: `${banner5}`,
+  },
+  {
+    id: 4,
+    url: `${banner6}`,
   },
 ];
 
@@ -106,8 +130,6 @@ const CataLogPage = () => {
   const handleSetCategory = (category) => {
     dispatch(setCategoryTab(category));
   };
-  console.log(categories);
-  console.log(products);
   return (
     <CheckConnection>
       <div>
