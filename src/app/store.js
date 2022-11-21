@@ -4,7 +4,6 @@ import productReducer from "./features/productSlice";
 import addressReducer from "./features/addressSlice";
 import cartReducer from "./features/cartSlice";
 import orderReducer from "./features/paymentSlice";
-import commentReducer from "./features/commentSlice";
 import storage from "redux-persist/lib/storage";
 import { persistReducer, persistStore } from "redux-persist";
 import thunk from "redux-thunk";
@@ -20,7 +19,6 @@ const rootReducer = combineReducers({
   cart: cartReducer,
   address: addressReducer,
   order: orderReducer,
-  comment: commentReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

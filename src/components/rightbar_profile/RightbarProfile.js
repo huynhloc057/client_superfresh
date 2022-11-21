@@ -1,4 +1,3 @@
-import { useForm } from "react-hook-form";
 import { useRef, useEffect } from "react";
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
@@ -10,12 +9,10 @@ import FormContainer from "../form/FormContainer";
 
 export default function Rightbar_Profile() {
   const { userInfo } = useSelector((state) => state.auth);
-  const [isOpen, isOpenModal] = useState(false);
   const emailRef = useRef();
   const dispatch = useDispatch();
   const [username, setUsername] = useState(userInfo?.user?.name);
   const [avatar, setAvatar] = useState(userInfo?.user?.profilePicture);
-  const _id = userInfo?.user?._id;
   const { isSuccess } = useSelector((state) => state.auth);
 
   useEffect(() => {
@@ -39,7 +36,7 @@ export default function Rightbar_Profile() {
             className="p-4 bg-white basis-3/5 border border-dashed border-[#dcdcdc]"
             style={{ height: "500px" }}
           >
-            <div className="text-lg my-2">Thông tin cá nhân</div>
+            <div className="my-2 text-lg">Thông tin cá nhân</div>
             <FormContainer>
               <Form className="formContainer" onSubmit={submitHandler}>
                 <Form.Group className="formGroup" controlId="username">

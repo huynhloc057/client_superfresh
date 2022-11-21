@@ -219,7 +219,7 @@ const CataLogPage = () => {
               {/* )} */}
 
               <section className="w-full h-auto rounded-lg select-none">
-                <Banner></Banner>
+                <Banner events={banners}></Banner>
               </section>
 
               <div className="w-full mt-6">

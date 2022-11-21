@@ -45,6 +45,15 @@ export const getOrders = createAsyncThunk(
   }
 );
 
+export const cancelOrder = createAsyncThunk(
+  "order/cancelOrder",
+  async (payload, thunkAPI) => {
+    const response = await paymentApi.cancelOrder(payload);
+    await thunkAPI.dispatch(getOrders());
+    return response;
+  }
+);
+
 const paymentSlice = createSlice({
   name: "order",
   initialState: {
@@ -81,7 +90,7 @@ const paymentSlice = createSlice({
     },
     [getOrders.fulfilled]: (state, action) => {
       state.isLoading = false;
-      state.orders = action.payload;
+      state.orders = action.payload.orders;
     },
     [getOrders.rejected]: (state, action) => {
       state.loading = false;

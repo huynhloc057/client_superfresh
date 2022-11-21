@@ -2,9 +2,9 @@ import React from "react";
 import Headerpage from "../components/headerpage/Headerpage";
 import CheckConnection from "../components/HOC/CheckConnection";
 import Leftbar from "../components/leftbar/Leftbar";
-import RightbarOrderManage from "../components/rightbar_order_manage/RightbarOrderManage";
 import Footer from "../modules/footer/Footer";
 import Header from "../modules/header/Header";
+import MyOrder from "./MyOrder";
 
 export default function OrderManage({ activeButton }) {
   return (
@@ -15,7 +15,7 @@ export default function OrderManage({ activeButton }) {
         <div className="flex my-4">
           <Leftbar activeButton={activeButton}></Leftbar>
 
-          <RightbarOrderManage></RightbarOrderManage>
+          <MyOrder></MyOrder>
         </div>
       </div>
       <Footer></Footer>

@@ -23,9 +23,8 @@ export const paymentApi = {
     const url = `${baseURL.order}/orders?id=${orderId}`;
     return axiosClient.get(url);
   },
-
-  updateOrder(data) {
-    const url = `${baseURL.product}/orders/${data.id}`;
-    return axiosClient.put(url, data);
+  cancelOrder: (payload) => {
+    const url = `${baseURL.order}/updateType`;
+    return axiosClient.post(url, payload);
   },
 };

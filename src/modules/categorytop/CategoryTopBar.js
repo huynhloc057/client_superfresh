@@ -30,7 +30,7 @@ const CategoryTopBar = () => {
   const handleTabCategory = (category) => {
     dispatch(setCategoryTab(category));
   };
-
+  if (!categories) return;
   return (
     <div className="text-sm leading-4 bg-white h-11">
       <div className="py-4 mx-44">

@@ -1,21 +1,20 @@
-import React, { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { getDeliveryInfo } from '../app/features/addressSlice'
-import { setModalOpen, setResetCart } from '../app/features/cartSlice'
-import Banner from '../components/banner/Banner'
-import ListItemsCategory from '../components/banner/ListItemsCategory'
-import CategoryProduct from '../components/category/CategoryProduct'
-import CategoryTopBar from '../modules/categorytop/CategoryTopBar'
-import Footer from '../modules/footer/Footer'
-import Header from '../modules/header/Header'
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getDeliveryInfo } from "../app/features/addressSlice";
+import { setModalOpen } from "../app/features/cartSlice";
+import Banner from "../components/banner/Banner";
+import ListItemsCategory from "../components/banner/ListItemsCategory";
+import CategoryProduct from "../components/category/CategoryProduct";
+import CategoryTopBar from "../modules/categorytop/CategoryTopBar";
+import Footer from "../modules/footer/Footer";
+import Header from "../modules/header/Header";
 
-import banner1 from '../image/banner1.png'
-import banner2 from '../image/banner2.png'
-import banner3 from '../image/banner3.png'
-import banner4 from '../image/banner4.png'
-import banner5 from '../image/banner5.png'
-import banner6 from '../image/banner6.png'
-import ProductListScroll from '../components/product/ProductListScroll'
+import banner1 from "../image/banner1.png";
+import banner2 from "../image/banner2.png";
+import banner3 from "../image/banner3.png";
+import banner4 from "../image/banner4.png";
+import banner5 from "../image/banner5.png";
+import banner6 from "../image/banner6.png";
 
 export const events = [
   {
@@ -42,16 +41,15 @@ export const events = [
     id: 6,
     url: `${banner6}`,
   },
-]
+];
 
 const HomePage = () => {
-  const dispatch = useDispatch()
-  const { modalOpen } = useSelector((state) => state.cart)
-  const { categories } = useSelector((state) => state.product)
+  const dispatch = useDispatch();
+  const { modalOpen } = useSelector((state) => state.cart);
   useEffect(() => {
-    dispatch(getDeliveryInfo())
-    dispatch(setModalOpen(!modalOpen))
-  }, [dispatch, modalOpen])
+    dispatch(getDeliveryInfo());
+    dispatch(setModalOpen(!modalOpen));
+  }, [dispatch, modalOpen]);
   return (
     <div>
       <Header></Header>
@@ -59,12 +57,10 @@ const HomePage = () => {
       <Banner events={events}></Banner>
       <ListItemsCategory></ListItemsCategory>
       <CategoryProduct></CategoryProduct>
-      {/* {categories?.map((category) => (
-        <ProductListScroll key={category._id} category={category}></ProductListScroll>
-      ))} */}
+
       <Footer></Footer>
     </div>
-  )
-}
+  );
+};
 
-export default HomePage
+export default HomePage;
