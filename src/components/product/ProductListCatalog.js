@@ -8,10 +8,10 @@ const ProductListCatalog = ({ products }) => {
   const handleLoadMoreProduct = () => {
     setNext(next + productPerRow);
   };
-  console.log(products)
+  console.log(products);
   return (
     <div className="flex flex-col w-full mb-4">
-      <div className="grid w-full md:grid-cols-3 xl:grid-cols-4 gap-1 mt-3 bg-white">
+      <div className="grid w-full gap-1 mt-3 bg-white md:grid-cols-3 xl:grid-cols-4">
         {products &&
           products
             ?.slice(0, next)
@@ -19,7 +19,7 @@ const ProductListCatalog = ({ products }) => {
               <ProductCard
                 key={item._id}
                 id={item._id}
-                thumbnailUrl={item.productPictures[0].img}
+                thumbnailUrl={item?.productPictures[0]?.img}
                 name={item.name}
                 quantitySell={item.quantity}
                 price={item.price}

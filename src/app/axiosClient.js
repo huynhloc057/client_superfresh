@@ -8,13 +8,22 @@ import axios from "axios";
 //   address: "https://apisuperfreshute.herokuapp.com/api/deliveryInfo",
 // };
 
+// export const baseURL = {
+//   user: "http://localhost:5000/api/auth",
+//   auth: "http://localhost:5000/api/user",
+//   product: "http://localhost:5000/api/product",
+//   category: "http://localhost:5000/api/category",
+//   order: "http://localhost:5000/api/order",
+//   address: "http://localhost:5000/api/deliveryInfo",
+// };
+
 export const baseURL = {
-  user: "http://localhost:5000/api/auth",
-  auth: "http://localhost:5000/api/user",
-  product: "http://localhost:5000/api/product",
-  category: "http://localhost:5000/api/category",
-  order: "http://localhost:5000/api/order",
-  address: "http://localhost:5000/api/deliveryInfo",
+  user: "https://superfreshdemoforbackend.vercel.app/api/auth",
+  auth: "https://superfreshdemoforbackend.vercel.app/api/user",
+  product: "https://superfreshdemoforbackend.vercel.app/api/product",
+  category: "https://superfreshdemoforbackend.vercel.app/api/category",
+  order: "https://superfreshdemoforbackend.vercel.app/api/order",
+  address: "https://superfreshdemoforbackend.vercel.app/api/deliveryInfo",
 };
 
 const axiosClient = axios.create({

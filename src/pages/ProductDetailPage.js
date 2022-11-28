@@ -30,6 +30,8 @@ export default function ProductDetailPage() {
   const [rating, setRating] = useState(0);
   const [comment, setComment] = useState("");
   const { productDetail, isSuccess } = useSelector((state) => state.product);
+  const { userInfo } = useSelector((state) => state.auth);
+
   useEffect(() => {
     dispatch(getProductDetail(slug));
     if (isSuccess) {
@@ -59,9 +61,11 @@ export default function ProductDetailPage() {
         <ProductDetailTopBar></ProductDetailTopBar>
         <ProductDetailContent></ProductDetailContent>
         <ProductDetailShortDescription></ProductDetailShortDescription>
-        <button onClick={submitReviewToggle} className="submitReview">
-          Submit Review
-        </button>
+        {userInfo && (
+          <button onClick={submitReviewToggle} className="submitReview">
+            Submit Review
+          </button>
+        )}
 
         <Dialog
           aria-labelledby="simple-dialog-title"

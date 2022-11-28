@@ -21,32 +21,33 @@ const ProductListRelated = ({ productDetail }) => {
     slidesToShow: 7,
     slidesToScroll: 7,
   };
-  if (!categoryId) return;
-  else
-    return (
-      <div className="mt-4 border-none outline-none">
-        <h2 className="pt-2 pb-2 pl-8 pr-8 m-0 text-xl font-normal leading-8 capitalize">
-          Sản phẩm tương tự{" "}
-        </h2>
-        <Slider {...settings}>
-          {products.length > 0 &&
-            products.map(
-              (item) =>
-                item._id !== productId && (
-                  <ProductCardRelated
-                    key={item._id}
-                    id={item._id}
-                    thumbnailUrl={item.productPictures[0].img}
-                    name={item.name}
-                    quantitySell={item.quantitySell}
-                    price={item.price}
-                    url={item.slug}
-                  ></ProductCardRelated>
-                )
-            )}
-        </Slider>
-      </div>
-    );
+  if (Object.keys(products).length === 0) {
+    return null;
+  }
+  return (
+    <div className="mt-4 border-none outline-none">
+      <h2 className="pt-2 pb-2 pl-8 pr-8 m-0 text-xl font-normal leading-8 capitalize">
+        Sản phẩm tương tự{" "}
+      </h2>
+      <Slider {...settings}>
+        {products &&
+          products.map(
+            (item) =>
+              item._id !== productId && (
+                <ProductCardRelated
+                  key={item._id}
+                  id={item._id}
+                  thumbnailUrl={item?.productPictures[0]?.img}
+                  name={item.name}
+                  quantitySell={item.quantitySell}
+                  price={item.price}
+                  url={item.slug}
+                ></ProductCardRelated>
+              )
+          )}
+      </Slider>
+    </div>
+  );
 };
 
 export default ProductListRelated;
