@@ -3,12 +3,18 @@ import { NavLink } from "react-router-dom";
 import Search from "../../components/input/Search";
 import IconAccount from "../../components/icons/IconAccount";
 import IconCart from "../../components/icons/IconCart";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { IconNavBarLogin } from "../../components/icons";
 import logo from "../../image/logo_header.png";
+import { useEffect } from "react";
+import { getUserById } from "../../app/features/authSlice";
 
 const Header = () => {
   const { userInfo } = useSelector((state) => ({ ...state.auth }));
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getUserById());
+  }, [dispatch]);
   return (
     <header id="main-header" className="relative bg-[#008641] z-[999] lg:p-3">
       {/* Start Top Header */}
