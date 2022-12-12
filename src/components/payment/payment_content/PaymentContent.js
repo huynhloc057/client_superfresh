@@ -118,6 +118,7 @@ function PaymentContent() {
           const url = res.url;
 
           if (url) {
+            dispatch(setResetCart());
             window.location.href = url;
           } else {
             alert("Hiện tại không thể thanh toán bằng hình thức này !");

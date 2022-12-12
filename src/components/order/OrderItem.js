@@ -60,7 +60,7 @@ const OrderItem = (props) => {
                   >
                     <div className="photo">
                       <img
-                        src={item.productId.productPictures[0].img}
+                        src={item.productId.productPictures[0]?.img}
                         alt={item.productId.name}
                       />
                     </div>
