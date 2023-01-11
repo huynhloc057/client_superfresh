@@ -20,10 +20,7 @@ import MessengerCustomerChat from "react-messenger-customer-chat";
 function App() {
   return (
     <div className="App">
-      <MessengerCustomerChat
-        pageId="100089629621590"
-        appId="3220798881494245"
-      />
+      <MessengerCustomerChat pageId="100089629621590" appId="499259985651004" />
       <Router>
         <Routes>
           <Route path="/" element={<HomePage></HomePage>}></Route>
