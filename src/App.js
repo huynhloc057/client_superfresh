@@ -21,7 +21,7 @@ function App() {
   return (
     <div className="App">
       <MessengerCustomerChat
-        pageId="106873825472011"
+        pageId="100089629621590"
         appId="3220798881494245"
       />
       <Router>
