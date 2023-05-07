@@ -105,13 +105,12 @@ function PaymentContent() {
             return;
           }
         } else if (checkedPayment === 1) {
-          setPaymentType("card");
           const totalAmount = currentTotal + Number(voucher) + Number(40000);
           const order = {
             items: getItemsToPay(),
             totalAmount,
             addressId: address._id,
-            paymentType,
+            paymentType: "card",
             paymentStatus: "pending",
           };
           const res = await dispatch(paymentWithMomo({ order })).unwrap();
