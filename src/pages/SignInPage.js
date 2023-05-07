@@ -142,7 +142,7 @@ const SignInPage = () => {
           </p>
           <p className="pt-2 text-xs font-normal text-center lg:text-sm text-text3 lg:mb-0 dark:text-white">
             Quên mật khẩu?{"  "}
-            <Link to="/" className="font-medium text-[#008641] underline">
+            <Link to="/forget" className="font-medium text-[#008641] underline">
               Khôi phục mật khẩu
             </Link>
           </p>

@@ -13,6 +13,18 @@ export const getProducts = createAsyncThunk(
   }
 );
 
+export const getNewestProducts = createAsyncThunk(
+  "product/newestProducts",
+  async (params, { rejectWithValue }) => {
+    try {
+      const response = await productApi.getNewestProductList();
+      return response;
+    } catch (err) {
+      return rejectWithValue(err.response.data);
+    }
+  }
+);
+
 export const getProductDetail = createAsyncThunk(
   "product/detail",
   async (slug, { rejectWithValue }) => {
@@ -30,6 +42,7 @@ export const getCategories = createAsyncThunk(
   async (params, { rejectWithValue }) => {
     try {
       const response = await productApi.getAllCategory();
+
       return response;
     } catch (err) {
       return rejectWithValue(err.response.data);
@@ -78,6 +91,7 @@ const productSlice = createSlice({
   initialState: {
     products: [],
     productDetail: {},
+    newestProducts: [],
     categories: [],
     category: [],
     isLoading: false,
@@ -118,7 +132,18 @@ const productSlice = createSlice({
       state.isError = true;
       state.errorMessage = action.payload;
     },
-
+    [getNewestProducts.pending]: (state, action) => {
+      state.isLoading = true;
+    },
+    [getNewestProducts.fulfilled]: (state, { payload }) => {
+      state.isLoading = false;
+      state.newestProducts = payload.products;
+    },
+    [getNewestProducts.rejected]: (state, action) => {
+      state.isLoading = false;
+      state.isError = true;
+      state.errorMessage = action.payload;
+    },
     // end updateProduct
     [getCategories.pending]: (state, action) => {
       state.isLoading = true;

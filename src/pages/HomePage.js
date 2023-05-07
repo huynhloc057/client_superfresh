@@ -15,6 +15,8 @@ import banner3 from "../image/banner3.png";
 import banner4 from "../image/banner4.png";
 import banner5 from "../image/banner5.png";
 import banner6 from "../image/banner6.png";
+import NewestProductList from "../components/product/NewestProductList";
+import { getNewestProducts } from "../app/features/productSlice";
 
 export const events = [
   {
@@ -46,9 +48,11 @@ export const events = [
 const HomePage = () => {
   const dispatch = useDispatch();
   const { modalOpen } = useSelector((state) => state.cart);
+  const { newestProducts } = useSelector((state) => state.product);
   useEffect(() => {
     dispatch(getDeliveryInfo());
     dispatch(setModalOpen(!modalOpen));
+    dispatch(getNewestProducts());
   }, [dispatch, modalOpen]);
   return (
     <div>
@@ -56,8 +60,8 @@ const HomePage = () => {
       <CategoryTopBar></CategoryTopBar>
       <Banner events={events}></Banner>
       <ListItemsCategory></ListItemsCategory>
+      <NewestProductList products={newestProducts}></NewestProductList>
       <CategoryProduct></CategoryProduct>
-
       <Footer></Footer>
     </div>
   );

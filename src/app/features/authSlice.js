@@ -66,6 +66,22 @@ export const loginByGoogle = createAsyncThunk(
   }
 );
 
+export const sendOtpToEmail = createAsyncThunk(
+  "auth/sendOtpToEmail",
+  async (email) => {
+    const response = await userApi.sendOtpToEmail(email);
+    return response;
+  }
+);
+
+export const updateForgetPassword = createAsyncThunk(
+  "auth/updateForgetPassword",
+  async (payload) => {
+    const response = await userApi.updateForgetPassword(payload);
+    return response;
+  }
+);
+
 const userSlice = createSlice({
   name: "auth",
   initialState: {

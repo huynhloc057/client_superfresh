@@ -113,7 +113,8 @@ const OrderItem = (props) => {
             </div>
             {/* Button để hủy đơn nếu trong quá trình vận chuyển muốn hoàn lại */}
             {lastOrderStatus(order) === "ordered" &&
-              order.paymentStatus !== "cancelled" && (
+              order.paymentStatus !== "cancelled" &&
+              order.paymentType !== "card" && (
                 <div className="button">
                   <div
                     className="btn btn-cancel"

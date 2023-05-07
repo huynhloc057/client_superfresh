@@ -64,7 +64,7 @@ export const PRODUCTS = [
 export const PAY_METHODS = [
   {
     src: "https://frontend.tikicdn.com/_desktop-next/static/img/icons/checkout/icon-payment-method-cod.svg",
-    title: "Thanh toán tiền mặc khi nhận hàng",
+    title: "Thanh toán tiền mặt khi nhận hàng",
   },
   {
     src: "https://frontend.tikicdn.com/_desktop-next/static/img/icons/checkout/icon-payment-method-momo.svg",

@@ -29,7 +29,6 @@ const ProductCardRelated = ({
           <IconStar></IconStar>
         </div>
         <div className="w-[1px] h-2 bg-slag"></div>
-        <span className="text-xs text-textSell">Đã bán {quantitySell}</span>
       </div>
       <div className="flex items-center mt-1 text-textProduct">
         <span className="text-base font-semibold"> {nf.format(price)}đ</span>

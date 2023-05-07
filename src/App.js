@@ -17,6 +17,7 @@ import PrivateRoutes from "./components/HOC/PrivateRoute";
 import Address from "./pages/Address";
 import EditAddress from "./pages/EditAddress";
 import MessengerCustomerChat from "react-messenger-customer-chat";
+import Forget from "./pages/Forget";
 function App() {
   return (
     <div className="App">
@@ -26,6 +27,8 @@ function App() {
           <Route path="/" element={<HomePage></HomePage>}></Route>
           <Route path="/sign-up" element={<SignUpPage> </SignUpPage>}></Route>
           <Route path="/sign-in" element={<SignInPage></SignInPage>}></Route>
+          <Route path="/forget" element={<Forget></Forget>}></Route>
+
           <Route element={<PrivateRoutes />}>
             <Route path="/cart" element={<Cart></Cart>}></Route>
             <Route

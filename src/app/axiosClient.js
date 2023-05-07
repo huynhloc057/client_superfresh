@@ -1,14 +1,6 @@
 import axios from "axios";
 
 // export const baseURL = {
-//   user: "https://apisuperfreshute.herokuapp.com/api/auth",
-//   product: "https://apisuperfreshute.herokuapp.com/api/product",
-//   category: "https://apisuperfreshute.herokuapp.com/api/category",
-//   order: "https://apisuperfreshute.herokuapp.com/api/order",
-//   address: "https://apisuperfreshute.herokuapp.com/api/deliveryInfo",
-// };
-
-// export const baseURL = {
 //   user: "http://localhost:5000/api/auth",
 //   auth: "http://localhost:5000/api/user",
 //   product: "http://localhost:5000/api/product",

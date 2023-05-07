@@ -16,6 +16,12 @@ export const userApi = {
     console.log(form);
     return axiosClient.post(url, form);
   },
+  sendOtpToEmail: (email) => {
+    return axiosClient.post(`${baseURL.user}/sendOtpToEmail`, email);
+  },
+  updateForgetPassword: (payload) => {
+    return axiosClient.post(`${baseURL.user}/updateForgetPassword`, payload);
+  },
   getUser() {
     const url = `${baseURL.user}/isUserLoggedIn`;
     return axiosClient.post(url);

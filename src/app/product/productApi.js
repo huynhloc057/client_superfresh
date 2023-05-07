@@ -9,6 +9,10 @@ export const productApi = {
     const url = `${baseURL.product}/${slug}`;
     return axiosClient.get(url);
   },
+  getNewestProductList() {
+    const url = `${baseURL.product}/getNewestProducts`;
+    return axiosClient.get(url);
+  },
   getAllCategory() {
     const url = `${baseURL.category}/getCategories`;
     return axiosClient.get(url);
