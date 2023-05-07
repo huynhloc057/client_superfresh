@@ -111,7 +111,7 @@ function PaymentContent() {
             totalAmount,
             addressId: address._id,
             paymentType: "card",
-            paymentStatus: "pending",
+            paymentStatus: "completed",
           };
           const res = await dispatch(paymentWithMomo({ order })).unwrap();
           const url = res.url;
