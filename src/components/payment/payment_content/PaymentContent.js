@@ -15,6 +15,7 @@ import BillDetail from "./bill/bill_detail/BillDetail";
 import ComputeBill from "./bill/compute_bill/ComputeBill";
 import { CURRENCY } from "./constraint";
 import { WrappedItem, WrapperBill } from "./bill/wrapper";
+import { updateQty } from "../../../app/features/productSlice";
 
 function PaymentContent() {
   const { deliveryInfo } = useSelector((state) => state.address);
@@ -92,6 +93,10 @@ function PaymentContent() {
             paymentStatus: "pending",
           };
           try {
+            for (let item of data.items) {
+              console.log(item);
+              dispatch(updateQty(item));
+            }
             let { order } = await dispatch(addOrderShipping(data)).unwrap();
             if (order) {
               dispatch(setResetCart());

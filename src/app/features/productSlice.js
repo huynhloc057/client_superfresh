@@ -86,6 +86,18 @@ export const addReviewProduct = createAsyncThunk(
   }
 );
 
+export const updateQty = createAsyncThunk(
+  "product/updateQuantity",
+  async (item, { rejectWithValue }) => {
+    try {
+      const response = await productApi.updateQuantityProduct(item);
+      return response;
+    } catch (err) {
+      return rejectWithValue(err.response.data);
+    }
+  }
+);
+
 const productSlice = createSlice({
   name: "product",
   initialState: {
@@ -201,6 +213,19 @@ const productSlice = createSlice({
       state.isSuccess = true;
     },
     [addReviewProduct.rejected]: (state, action) => {
+      state.loading = false;
+      state.isError = true;
+      state.errorMessage = action.payload;
+    },
+
+    [updateQty.pending]: (state, action) => {
+      state.isLoading = true;
+    },
+    [updateQty.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      state.isSuccess = true;
+    },
+    [updateQty.rejected]: (state, action) => {
       state.loading = false;
       state.isError = true;
       state.errorMessage = action.payload;

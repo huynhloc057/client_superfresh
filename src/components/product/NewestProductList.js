@@ -6,16 +6,16 @@ import ProductCardRelated from "./ProductCardRelated";
 
 const NewestProductList = ({ products }) => {
   let settings = {
-    infinite: false,
+    infinite: true,
     speed: 700,
     slidesToShow: 7,
-    slidesToScroll: 7,
+    slidesToScroll: 5,
   };
   // if (Object.keys(products).length === 0) {
   //   return null;
   // }
   return (
-    <div className="mt-4 border-none outline-none mx-20">
+    <div className="mx-20 mt-4 border-none outline-none">
       <h2 className="text-[24px] leading-[1.3] m-0 font-bold uppercase">
         Sản phẩm mới nhất{" "}
       </h2>

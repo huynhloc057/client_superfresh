@@ -9,6 +9,10 @@ export const productApi = {
     const url = `${baseURL.product}/${slug}`;
     return axiosClient.get(url);
   },
+  updateQuantityProduct(item) {
+    const url = `${baseURL.product}/updateQuantity`;
+    return axiosClient.post(url, item);
+  },
   getNewestProductList() {
     const url = `${baseURL.product}/getNewestProducts`;
     return axiosClient.get(url);
