@@ -122,6 +122,10 @@ function PaymentContent() {
           const url = res.url;
 
           if (url) {
+            for (let item of data.items) {
+              console.log(item);
+              dispatch(updateQty(item));
+            }
             dispatch(setResetCart());
             window.location.href = url;
           } else {
