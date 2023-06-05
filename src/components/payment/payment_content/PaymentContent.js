@@ -122,7 +122,7 @@ function PaymentContent() {
           const url = res.url;
 
           if (url) {
-            for (let item of data.items) {
+            for (let item of order.items) {
               console.log(item);
               dispatch(updateQty(item));
             }
